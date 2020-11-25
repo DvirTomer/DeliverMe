@@ -27,6 +27,7 @@
         android:ems="10"
         android:hint="שם מלא"
         android:inputType="textPersonName"
+        android:textColorHint="#80000000"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -40,6 +41,7 @@
         android:ems="10"
         android:hint='דוא"ל'
         android:inputType="textEmailAddress"
+        android:textColorHint="#80000000"
         app:layout_constraintStart_toStartOf="@+id/userName_id"
         app:layout_constraintTop_toBottomOf="@+id/userName_id" />
 
@@ -52,6 +54,7 @@
         android:ems="10"
         android:hint="                                 סיסמה "
         android:inputType="textPassword"
+        android:textColorHint="#80000000"
         app:layout_constraintEnd_toEndOf="@+id/mail_id"
         app:layout_constraintTop_toBottomOf="@+id/mail_id" />
 

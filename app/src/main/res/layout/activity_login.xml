@@ -28,7 +28,9 @@
         android:layout_marginTop="108dp"
         android:layout_marginBottom="47dp"
         android:ems="10"
+        android:hint='דוא"ל'
         android:inputType="textEmailAddress"
+        android:textColorHint="#80000000"
         app:layout_constraintBottom_toTopOf="@+id/editTextTextPassword4"
         app:layout_constraintStart_toStartOf="@+id/editTextTextPassword4"
         app:layout_constraintTop_toTopOf="@+id/textView3"
@@ -41,7 +43,9 @@
         android:layout_marginStart="84dp"
         android:layout_marginBottom="8dp"
         android:ems="10"
+        android:hint="                                 סיסמה"
         android:inputType="textPassword"
+        android:textColorHint="#80000000"
         app:layout_constraintBottom_toTopOf="@+id/BLogin"
         app:layout_constraintStart_toStartOf="parent" />
 
