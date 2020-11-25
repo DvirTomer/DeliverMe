@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "768883603025",
+    "firebase_url": "https://deliverme-fd8f8.firebaseio.com",
+    "project_id": "deliverme-fd8f8",
+    "storage_bucket": "deliverme-fd8f8.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:768883603025:android:563bf5e1c663456a996a70",
+        "android_client_info": {
+          "package_name": "com.example.deliverme"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "768883603025-rothgd3mivi4r7pigu8tqlm6vi5q3rq0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDs7OeJS11y3pprCj0rGn5lc5WR32j4LMg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "768883603025-rothgd3mivi4r7pigu8tqlm6vi5q3rq0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
