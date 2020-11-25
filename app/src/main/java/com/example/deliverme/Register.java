@@ -28,13 +28,17 @@ public class Register extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //connects the xml to java file
         setContentView(R.layout.activity_register);
-        AllName = findViewById(R.id.editTextTextPersonName);
-        Mail = findViewById(R.id.editTextTextEmailAddress);
-        loginbutton = findViewById(R.id.textView2);
-        regButton = findViewById(R.id.button);
-        Password = findViewById(R.id.editTextTextPassword);
-        progressBar = findViewById(R.id.progressBar);
+        //Buttons id from xml
+        AllName = findViewById(R.id.userName_id);
+        Mail = findViewById(R.id.mail_id);
+        loginbutton = findViewById(R.id.connect_id);
+        regButton = findViewById(R.id.Reg_id);
+        Password = findViewById(R.id.Password_id);
+        progressBar = findViewById(R.id.Loading_id);
+
+
         mhuth = FirebaseAuth.getInstance();
         if(mhuth.getCurrentUser()!=null)
         {
