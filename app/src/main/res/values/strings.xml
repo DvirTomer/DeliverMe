@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">DeliverMe</string>
+    <array name="all_product">
+        <item>סוג מוצר...</item>
+        <item>ארון</item>
+        <item>תיק גב</item>
+        <item>מחשב</item>
+        <item>כיסא</item>
+        <item>תמונה</item>
+
+
+    </array>
 </resources>

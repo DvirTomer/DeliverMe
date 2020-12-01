@@ -76,7 +76,7 @@
         android:text="משתמש קיים? התחבר כאן"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Reg_id" />
+        app:layout_constraintTop_toBottomOf="@+id/send_button" />
 
     <ProgressBar
         android:id="@+id/Loading_id"

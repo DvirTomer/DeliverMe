@@ -11,19 +11,41 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class MainActivity extends AppCompatActivity {
     Button signout;
+   private Button send_btn;
+
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        signout=findViewById(R.id.Logout);
-        signout.setOnClickListener(new View.OnClickListener() {
+
+//        signout=findViewById(R.id.Logout);
+        send_btn=(Button)findViewById(R.id.send_delivery);
+
+        send_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                FirebaseAuth.getInstance().signOut();
-                startActivity(new Intent(getApplicationContext(),Register.class));
-                finish();
+                open();
+
             }
         });
+
+//        signout.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                FirebaseAuth.getInstance().signOut();
+//                startActivity(new Intent(getApplicationContext(), Register.class));
+//                finish();
+//            }
+//
+//        });
+    }
+    public void open()
+    {
+        Intent intent=new Intent(this,client.class);
+        startActivity(intent);
     }
 }
 ///////132
