@@ -44,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
     }
     public void open()
     {
-        Intent intent=new Intent(this,client.class);
+        Intent intent=new Intent(this, Client.class);
         startActivity(intent);
     }
 }

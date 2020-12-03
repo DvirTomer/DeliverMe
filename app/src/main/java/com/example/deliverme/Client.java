@@ -14,9 +14,10 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
-public class client extends AppCompatActivity {
+public class Client extends AppCompatActivity {
     EditText citySrc, streetSrc, timeSrc1,timeSrc2,note,cityDst, streetDst, timeDst1,timeDst2;
     Spinner product;
     Button send;
@@ -61,30 +62,32 @@ public class client extends AppCompatActivity {
                     return;
                 }
                 if (TextUtils.isEmpty(StimeSrc1)) {
-                    timeSrc1.setError("Source street is Required");
+                    timeSrc1.setError("Source time is Required");
                     return;
                 }
                 if (TextUtils.isEmpty(StimeSrc2)) {
-                    timeSrc2.setError("Source street is Required");
+                    timeSrc2.setError("Source time is Required");
                     return;
                 }
                 if (TextUtils.isEmpty(ScityDst)) {
-                    cityDst.setError("Source street is Required");
+                    cityDst.setError("Destination city is Required");
                     return;
                 }
                 if (TextUtils.isEmpty(SstreetDst)) {
-                    streetDst.setError("Source street is Required");
+                    streetDst.setError("Destination street is Required");
                     return;
                 }
                 if (TextUtils.isEmpty(StimeDst1)) {
-                    timeDst1.setError("Source street is Required");
+                    timeDst1.setError("Destination time is Required");
                     return;
                 }
                 if (TextUtils.isEmpty(StimeDst2)) {
-                    timeDst2.setError("Source street is Required");
+                    timeDst2.setError("Destination time is Required");
                     return;
                 }
                 if (Sproduct=="סוג מוצר...") {
+                    TextView err= (TextView) product.getSelectedView();
+                    err.setError("Select product is Required");
                     return;
                 }
 

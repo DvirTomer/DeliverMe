@@ -22,8 +22,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            tools:context=".Register"
-            tools:layout_editor_absoluteY="299dp">
+            app:layout_constraintTop_toTopOf="parent"
+            tools:context=".Register">
 
             <TextView
                 android:id="@+id/textView5"
@@ -166,10 +166,11 @@
                 android:id="@+id/spinner"
                 android:layout_width="261dp"
                 android:layout_height="21dp"
+                android:layout_marginStart="92dp"
                 android:entries="@array/all_product"
                 app:layout_constraintBottom_toTopOf="@+id/notes"
-                app:layout_constraintTop_toBottomOf="@+id/time_dst2"
-                tools:layout_editor_absoluteX="76dp" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/time_dst2" />
 
             <EditText
                 android:id="@+id/notes"
@@ -187,11 +188,12 @@
                 android:id="@+id/textView"
                 android:layout_width="162dp"
                 android:layout_height="42dp"
+                android:layout_marginStart="124dp"
                 android:layout_marginTop="4dp"
                 android:text="כתובת מקור"
                 android:textSize="30sp"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:layout_editor_absoluteX="116dp" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.Guideline

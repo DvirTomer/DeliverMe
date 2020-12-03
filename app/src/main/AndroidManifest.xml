@@ -9,7 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.DeliverMe">
-        <activity android:name=".client"></activity>
+        <activity android:name=".Client"></activity>
         <activity android:name=".Register" />
         <activity android:name=".MainActivity" />
         <activity android:name=".Login">
