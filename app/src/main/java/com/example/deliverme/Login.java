@@ -33,7 +33,7 @@ public class Login extends AppCompatActivity {
         password = findViewById(R.id.editTextTextPassword4);
         Email = findViewById(R.id.editTextTextEmailAddress4);
         mLogin = findViewById(R.id.BLogin);
-        Create = findViewById(R.id.create);
+        Create = (TextView)findViewById(R.id.create);
         progressBar = findViewById(R.id.progressBar2);
         mhuth = FirebaseAuth.getInstance();
         mLogin.setOnClickListener(new View.OnClickListener() {
@@ -54,15 +54,15 @@ public class Login extends AppCompatActivity {
                     return;
                 }
                 progressBar.setVisibility(View.VISIBLE);
-                //אcheck the user
+                //check the user
                 mhuth.signInWithEmailAndPassword(email, Password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-                            Toast.makeText(Login.this, "LOGGED IN SUCCESFULLY", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(Login.this, "התחברןת בוצעה בהצלחה", Toast.LENGTH_SHORT).show();
                             startActivity(new Intent(getApplicationContext(), MainActivity.class));
                         } else {
-                            Toast.makeText(Login.this, "ERROR!" + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(Login.this, "שגיאה!" + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                             progressBar.setVisibility(View.GONE);
 
                         }
@@ -75,11 +75,17 @@ public class Login extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //LOGIN -> create account -> Button
-                startActivity(new Intent(getApplicationContext(), Register.class));
+                create_User();
             }
         });
 
-    }}
+    }
+    public void create_User()
+    {
+        Intent intent=new Intent(this,Register.class);
+        startActivity(intent);
+    }
+}
 
 
 

@@ -21,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-//        signout=findViewById(R.id.Logout);
+        signout=(Button)findViewById(R.id.Logout);
         send_btn=(Button)findViewById(R.id.send_delivery);
 
         send_btn.setOnClickListener(new View.OnClickListener() {
@@ -32,15 +32,15 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-//        signout.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                FirebaseAuth.getInstance().signOut();
-//                startActivity(new Intent(getApplicationContext(), Register.class));
-//                finish();
-//            }
-//
-//        });
+        signout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FirebaseAuth.getInstance().signOut();
+                startActivity(new Intent(getApplicationContext(), Register.class));
+                finish();
+            }
+
+        });
     }
     public void open()
     {
