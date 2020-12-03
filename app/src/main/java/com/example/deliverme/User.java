@@ -17,6 +17,7 @@ public class User {
         this.allName=allName;
         this.mail=mail;
         this.phone="";
+//        this.clientPac=clientPac;
     }
 
     public String getId() {
@@ -35,6 +36,11 @@ public class User {
         return mail;
     }
 
+//    public ArrayList clientPac()
+//    {
+//        return clientPac;
+//    }
+
     public void setId(String id) {
         this.id = id;
     }
@@ -50,5 +56,10 @@ public class User {
     public void setMail(String mail) {
         this.mail = mail;
     }
+
+//    public void setClientPac(ArrayList clientPac)
+//    {
+//        this.clientPac = clientPac;
+//    }
 }
 

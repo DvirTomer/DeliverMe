@@ -34,69 +34,69 @@ public class Client extends AppCompatActivity {
         timeDst1 = findViewById(R.id.time_dst1);
         timeDst2 = findViewById(R.id.time_dst2);
         product = findViewById(R.id.spinner);
-        send = findViewById(R.id.send_button);
+        send = (Button)findViewById(R.id.send_button);
         setContentView(R.layout.activity_client);
 
 
-        send.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String ScitySrc = citySrc.getText().toString().trim();
-                String SstreetSrc = streetSrc.getText().toString().trim();
-                String StimeSrc1 = timeSrc1.getText().toString().trim();
-                String StimeSrc2 = timeSrc2.getText().toString().trim();
-                String ScityDst = cityDst.getText().toString().trim();
-                String SstreetDst = streetDst.getText().toString().trim();
-                String StimeDst1 = timeDst1.getText().toString().trim();
-                String StimeDst2 = timeDst2.getText().toString().trim();
-                String Sproduct = product.getTransitionName().toString().trim();
+//        send.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                String ScitySrc = citySrc.getText().toString().trim();
+//                String SstreetSrc = streetSrc.getText().toString().trim();
+//                String StimeSrc1 = timeSrc1.getText().toString().trim();
+//                String StimeSrc2 = timeSrc2.getText().toString().trim();
+//                String ScityDst = cityDst.getText().toString().trim();
+//                String SstreetDst = streetDst.getText().toString().trim();
+//                String StimeDst1 = timeDst1.getText().toString().trim();
+//                String StimeDst2 = timeDst2.getText().toString().trim();
+//                String Sproduct = product.getTransitionName().toString().trim();
 //                String timeDst1 = timeDst1.getText().toString().trim();
 //                String timeDst1 = timeDst1.getText().toString().trim();
 
-                if (TextUtils.isEmpty(ScitySrc)) {
-                    citySrc.setError("Source city is Required");
-                    return;
-                }
-                if (TextUtils.isEmpty(SstreetSrc)) {
-                    streetSrc.setError("Source street is Required");
-                    return;
-                }
-                if (TextUtils.isEmpty(StimeSrc1)) {
-                    timeSrc1.setError("Source time is Required");
-                    return;
-                }
-                if (TextUtils.isEmpty(StimeSrc2)) {
-                    timeSrc2.setError("Source time is Required");
-                    return;
-                }
-                if (TextUtils.isEmpty(ScityDst)) {
-                    cityDst.setError("Destination city is Required");
-                    return;
-                }
-                if (TextUtils.isEmpty(SstreetDst)) {
-                    streetDst.setError("Destination street is Required");
-                    return;
-                }
-                if (TextUtils.isEmpty(StimeDst1)) {
-                    timeDst1.setError("Destination time is Required");
-                    return;
-                }
-                if (TextUtils.isEmpty(StimeDst2)) {
-                    timeDst2.setError("Destination time is Required");
-                    return;
-                }
-                if (Sproduct=="סוג מוצר...") {
-                    TextView err= (TextView) product.getSelectedView();
-                    err.setError("Select product is Required");
-                    return;
-                }
+//                if (TextUtils.isEmpty(ScitySrc)) {
+//                    citySrc.setError("Source city is Required");
+//                    return;
+//                }
+//                if (TextUtils.isEmpty(SstreetSrc)) {
+//                    streetSrc.setError("Source street is Required");
+//                    return;
+//                }
+//                if (TextUtils.isEmpty(StimeSrc1)) {
+//                    timeSrc1.setError("Source time is Required");
+//                    return;
+//                }
+//                if (TextUtils.isEmpty(StimeSrc2)) {
+//                    timeSrc2.setError("Source time is Required");
+//                    return;
+//                }
+//                if (TextUtils.isEmpty(ScityDst)) {
+//                    cityDst.setError("Destination city is Required");
+//                    return;
+//                }
+//                if (TextUtils.isEmpty(SstreetDst)) {
+//                    streetDst.setError("Destination street is Required");
+//                    return;
+//                }
+//                if (TextUtils.isEmpty(StimeDst1)) {
+//                    timeDst1.setError("Destination time is Required");
+//                    return;
+//                }
+//                if (TextUtils.isEmpty(StimeDst2)) {
+//                    timeDst2.setError("Destination time is Required");
+//                    return;
+//                }
+//                if (Sproduct=="סוג מוצר...") {
+//                    TextView err= (TextView) product.getSelectedView();
+//                    err.setError("Select product is Required");
+//                    return;
+//                }
 
                 // REGISTER THE USER DATA
 
 
-            }
+//            }
 
 
-        });
+//        });
     }
 }

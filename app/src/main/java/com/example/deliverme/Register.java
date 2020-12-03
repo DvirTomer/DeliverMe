@@ -77,7 +77,7 @@ public class Register extends AppCompatActivity {
                     {
                         if (task.isSuccessful())
                         {
-                                                  String id=dbUser.push().getKey();
+                            String id=dbUser.push().getKey();
                        User user=new User(id,allName,email);
                        dbUser.child(id).setValue(user);
 
