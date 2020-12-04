@@ -8,8 +8,8 @@ public class User {
     String allName;
     String phone;
     String mail;
-    ArrayList <Package> clientPac;
-    ArrayList <Package> messengerPac;
+//    ArrayList <Package> clientPac;
+//    ArrayList <Package> messengerPac;
 
     public User(String id, String allName, String mail)
     {
@@ -17,7 +17,8 @@ public class User {
         this.allName=allName;
         this.mail=mail;
         this.phone="";
-//        this.clientPac=clientPac;
+//        clientPac=new ArrayList<Package>();
+//        messengerPac=new ArrayList<Package>();
     }
 
     public String getId() {
@@ -36,11 +37,6 @@ public class User {
         return mail;
     }
 
-//    public ArrayList clientPac()
-//    {
-//        return clientPac;
-//    }
-
     public void setId(String id) {
         this.id = id;
     }
@@ -57,9 +53,6 @@ public class User {
         this.mail = mail;
     }
 
-//    public void setClientPac(ArrayList clientPac)
-//    {
-//        this.clientPac = clientPac;
-//    }
+
 }
 

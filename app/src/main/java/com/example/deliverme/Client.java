@@ -6,7 +6,9 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -34,69 +36,80 @@ public class Client extends AppCompatActivity {
         timeDst1 = findViewById(R.id.time_dst1);
         timeDst2 = findViewById(R.id.time_dst2);
         product = findViewById(R.id.spinner);
+        TextView textProduct= (TextView) product.getSelectedView();
+
         send = (Button)findViewById(R.id.send_button);
         setContentView(R.layout.activity_client);
 
 
-//        send.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                String ScitySrc = citySrc.getText().toString().trim();
-//                String SstreetSrc = streetSrc.getText().toString().trim();
-//                String StimeSrc1 = timeSrc1.getText().toString().trim();
-//                String StimeSrc2 = timeSrc2.getText().toString().trim();
-//                String ScityDst = cityDst.getText().toString().trim();
-//                String SstreetDst = streetDst.getText().toString().trim();
-//                String StimeDst1 = timeDst1.getText().toString().trim();
-//                String StimeDst2 = timeDst2.getText().toString().trim();
-//                String Sproduct = product.getTransitionName().toString().trim();
-//                String timeDst1 = timeDst1.getText().toString().trim();
+        send.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String ScitySrc = citySrc.getText().toString().trim();
+                String SstreetSrc = streetSrc.getText().toString().trim();
+                String StimeSrc1 = timeSrc1.getText().toString().trim();
+                String StimeSrc2 = timeSrc2.getText().toString().trim();
+                String ScityDst = cityDst.getText().toString().trim();
+                String SstreetDst = streetDst.getText().toString().trim();
+                String StimeDst1 = timeDst1.getText().toString().trim();
+                String StimeDst2 = timeDst2.getText().toString().trim();
+                String Sproduct = textProduct.getText().toString().trim();
+                String Snote = note.getText().toString().trim();
 //                String timeDst1 = timeDst1.getText().toString().trim();
 
-//                if (TextUtils.isEmpty(ScitySrc)) {
-//                    citySrc.setError("Source city is Required");
-//                    return;
-//                }
-//                if (TextUtils.isEmpty(SstreetSrc)) {
-//                    streetSrc.setError("Source street is Required");
-//                    return;
-//                }
-//                if (TextUtils.isEmpty(StimeSrc1)) {
-//                    timeSrc1.setError("Source time is Required");
-//                    return;
-//                }
-//                if (TextUtils.isEmpty(StimeSrc2)) {
-//                    timeSrc2.setError("Source time is Required");
-//                    return;
-//                }
-//                if (TextUtils.isEmpty(ScityDst)) {
-//                    cityDst.setError("Destination city is Required");
-//                    return;
-//                }
-//                if (TextUtils.isEmpty(SstreetDst)) {
-//                    streetDst.setError("Destination street is Required");
-//                    return;
-//                }
-//                if (TextUtils.isEmpty(StimeDst1)) {
-//                    timeDst1.setError("Destination time is Required");
-//                    return;
-//                }
-//                if (TextUtils.isEmpty(StimeDst2)) {
-//                    timeDst2.setError("Destination time is Required");
-//                    return;
-//                }
-//                if (Sproduct=="סוג מוצר...") {
-//                    TextView err= (TextView) product.getSelectedView();
-//                    err.setError("Select product is Required");
-//                    return;
-//                }
+                if (TextUtils.isEmpty(ScitySrc)) {
+                    citySrc.setError("Source city is Required");
+                    return;
+                }
+                if (TextUtils.isEmpty(SstreetSrc)) {
+                    streetSrc.setError("Source street is Required");
+                    return;
+                }
+                if (TextUtils.isEmpty(StimeSrc1)) {
+                    timeSrc1.setError("Source time is Required");
+                    return;
+                }
+                if (TextUtils.isEmpty(StimeSrc2)) {
+                    timeSrc2.setError("Source time is Required");
+                    return;
+                }
+                if (TextUtils.isEmpty(ScityDst)) {
+                    cityDst.setError("Destination city is Required");
+                    return;
+                }
+                if (TextUtils.isEmpty(SstreetDst)) {
+                    streetDst.setError("Destination street is Required");
+                    return;
+                }
+                if (TextUtils.isEmpty(StimeDst1)) {
+                    timeDst1.setError("Destination time is Required");
+                    return;
+                }
+                if (TextUtils.isEmpty(StimeDst2)) {
+                    timeDst2.setError("Destination time is Required");
+                    return;
+                }
+                if (TextUtils.isEmpty(Sproduct)) {
+                   textProduct.setError("נא לבחור סוג מוצר");
+                    return;
+                }
 
                 // REGISTER THE USER DATA
+                FirebaseUser user=FirebaseAuth.getInstance().getCurrentUser();
+                if(user!=null)
+                {
+
+                    Package pac=new Package(ScitySrc,SstreetSrc,StimeSrc1,StimeSrc2,Snote,ScityDst,SstreetDst,StimeDst1,StimeDst2,Sproduct);
+                    String userID =user.getUid();
+                    DatabaseReference dbUserPac=FirebaseDatabase.getInstance().getReference("users");
+                    dbUserPac.child(userID).child("packages").setValue(pac);
+                }
+                else{
+                }
+
+            }
 
 
-//            }
-
-
-//        });
+        });
     }
 }
