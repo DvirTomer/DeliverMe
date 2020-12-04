@@ -22,6 +22,7 @@
             android:text="DeliverMe"
             android:textColor="@android:color/white"
             android:textSize="34sp" />
+
     </RelativeLayout>
 
     <GridLayout
@@ -56,14 +57,15 @@
 
                 <ImageView
                     android:layout_width="wrap_content"
-                    android:layout_height="125dp"
+                    android:layout_height="129dp"
                     android:layout_gravity="center_horizontal"
                     android:src="@drawable/deliver" />
 
-                <TextView
+                <Button
+                    android:id="@+id/take_delivery"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="take delivary"
+                    android:text="take delivery"
                     android:textAlignment="center"
                     android:textColor="@color/black"
                     android:textSize="18sp"

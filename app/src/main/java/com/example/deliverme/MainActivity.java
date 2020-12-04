@@ -11,7 +11,7 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class MainActivity extends AppCompatActivity {
     Button signout;
-   private Button send_btn;
+   private Button send_btn, take_btn;
 
 
 
@@ -23,12 +23,18 @@ public class MainActivity extends AppCompatActivity {
 
         signout=(Button)findViewById(R.id.Logout);
         send_btn=(Button)findViewById(R.id.send_delivery);
+        take_btn =(Button)findViewById(R.id.take_delivery);
 
+        take_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                open_take();
+            }
+        });
         send_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                open();
-
+                open_send();
             }
         });
 
@@ -42,9 +48,14 @@ public class MainActivity extends AppCompatActivity {
 
         });
     }
-    public void open()
+    public void open_send()
     {
         Intent intent=new Intent(this, Client.class);
+        startActivity(intent);
+    }
+    public void open_take()
+    {
+        Intent intent=new Intent(this, Delivery_Person.class);
         startActivity(intent);
     }
 }
