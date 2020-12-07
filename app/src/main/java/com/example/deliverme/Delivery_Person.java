@@ -1,6 +1,8 @@
 package com.example.deliverme;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Adapter;
@@ -23,7 +25,7 @@ import static android.widget.Toast.*;
 
 public class Delivery_Person extends AppCompatActivity {
     ListView listview;
-    Button button;
+    Button confirm;
     String selected = "";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,8 +39,9 @@ public class Delivery_Person extends AppCompatActivity {
 
 
         //
-        button = (Button) findViewById(R.id.button2);
+        confirm = (Button) findViewById(R.id.button2);
         //
+
         DatabaseReference db = FirebaseDatabase.getInstance().getReference().child("users");
 
 
@@ -76,7 +79,7 @@ public class Delivery_Person extends AppCompatActivity {
             }
         });
 
-        button.setOnClickListener(new View.OnClickListener() {
+        confirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if(selected=="" || selected==" " || selected.length()<2 || selected==null)
@@ -85,11 +88,17 @@ public class Delivery_Person extends AppCompatActivity {
                 }
                 else{
                     Toast.makeText(Delivery_Person.this,"clicked "+selected, LENGTH_SHORT).show();
+                   choose_package();
                 }
 
             }
         });
 
+    }
+    public void choose_package(){
+        Intent intent = new Intent(this, Confirmation.class);
+        intent.putExtra("temp", selected);
+        startActivity(intent);
     }
 
 
