@@ -8,14 +8,14 @@ public class Package {
     String streetSrc;
     String timeSrc1;
     String timeSrc2;
-    String note;
     String cityDst;
     String streetDst;
     String timeDst1;
     String timeDst2;
+    String note;
     String product;
 
-    public Package(String citySrc, String streetSrc, String timeSrc1, String timeSrc2, String note, String cityDst, String streetDst, String timeDst1, String timeDst2, String product) {
+    public Package(String citySrc, String streetSrc, String timeSrc1, String timeSrc2, String cityDst, String streetDst, String timeDst1, String timeDst2, String note, String product) {
         this.citySrc = citySrc;
         this.streetSrc = streetSrc;
         this.timeSrc1 = timeSrc1;
