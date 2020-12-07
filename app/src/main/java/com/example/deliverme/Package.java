@@ -8,15 +8,14 @@ public class Package {
     String streetSrc;
     String timeSrc1;
     String timeSrc2;
-    String note;
     String cityDst;
     String streetDst;
     String timeDst1;
     String timeDst2;
+    String note;
+    String product;
 
-    Spinner product;
-
-    public Package(String citySrc, String streetSrc, String timeSrc1, String timeSrc2, String note, String cityDst, String streetDst, String timeDst1, String timeDst2, Spinner product) {
+    public Package(String citySrc, String streetSrc, String timeSrc1, String timeSrc2, String cityDst, String streetDst, String timeDst1, String timeDst2, String note, String product) {
         this.citySrc = citySrc;
         this.streetSrc = streetSrc;
         this.timeSrc1 = timeSrc1;
@@ -65,7 +64,7 @@ public class Package {
         return timeDst2;
     }
 
-    public Spinner getProduct() {
+    public String getProduct() {
         return product;
     }
 
@@ -105,7 +104,7 @@ public class Package {
         this.timeDst2 = timeDst2;
     }
 
-    public void setProduct(Spinner product) {
+    public void setProduct(String product) {
         this.product = product;
     }
 }
