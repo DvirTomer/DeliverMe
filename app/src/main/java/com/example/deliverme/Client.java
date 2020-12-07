@@ -45,6 +45,9 @@ public class Client extends AppCompatActivity {
         send = (Button)findViewById(R.id.send_pac);
 
         ////
+//        dbUserPac= FirebaseDatabase.getInstance().getReference("users");
+//        String id=dbUserPac.getKey();
+
         FirebaseUser user=FirebaseAuth.getInstance().getCurrentUser();
         String userId= user.getUid();
         dbUserPac= FirebaseDatabase.getInstance().getReference("users").child(userId).child("packages");
