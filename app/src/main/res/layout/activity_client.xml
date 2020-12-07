@@ -180,7 +180,7 @@
                 android:layout_width="268dp"
                 android:layout_height="93dp"
                 android:layout_marginTop="28dp"
-                android:text="הערות"
+                android:hint="הערות"
                 app:layout_constraintBottom_toTopOf="@+id/send_pac"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
