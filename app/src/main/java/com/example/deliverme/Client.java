@@ -49,7 +49,9 @@ public class Client extends AppCompatActivity {
 //        String id=dbUserPac.getKey();
 
         FirebaseUser user=FirebaseAuth.getInstance().getCurrentUser();
+        // id auth
         String userId= user.getUid();
+
         dbUserPac= FirebaseDatabase.getInstance().getReference("users").child(userId).child("packages");
 //        String x ="1";
 //        Package pac = new Package(x,x,x,x,x,x,x,x,x,x);

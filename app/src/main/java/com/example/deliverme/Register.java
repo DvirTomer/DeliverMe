@@ -77,9 +77,14 @@ public class Register extends AppCompatActivity {
                     {
                         if (task.isSuccessful())
                         {
-                            String id=dbUser.push().getKey();
-                       User user=new User(id,allName,email);
-                       dbUser.child(id).setValue(user);
+//                             id="";
+//                            if(mhuth.getCurrentUser()!=null)
+//                            {
+                            String id =mhuth.getCurrentUser().getUid();
+//                            }
+//                            String id=dbUser.push().getKey();
+                            User user=new User(id,allName,email);
+                            dbUser.child(id).setValue(user);
 
                             Toast.makeText(Register.this, "User created",Toast.LENGTH_SHORT).show();
                             startActivity(new Intent(getApplicationContext(),MainActivity.class));

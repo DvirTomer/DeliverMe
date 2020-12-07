@@ -34,7 +34,7 @@ public class Login extends AppCompatActivity {
         Email = findViewById(R.id.editTextTextEmailAddress4);
         mLogin = findViewById(R.id.BLogin);
         Create = (TextView)findViewById(R.id.create);
-        progressBar = findViewById(R.id.progressBar2);
+//        progressBar = findViewById(R.id.progressBar2);
         mhuth = FirebaseAuth.getInstance();
         mLogin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -53,7 +53,7 @@ public class Login extends AppCompatActivity {
                     password.setError("Your password must be greater than 6");
                     return;
                 }
-                progressBar.setVisibility(View.VISIBLE);
+//                progressBar.setVisibility(View.VISIBLE);
                 //check the user
                 mhuth.signInWithEmailAndPassword(email, Password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
@@ -63,7 +63,7 @@ public class Login extends AppCompatActivity {
                             startActivity(new Intent(getApplicationContext(), MainActivity.class));
                         } else {
                             Toast.makeText(Login.this, "שגיאה!" + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
-                            progressBar.setVisibility(View.GONE);
+//                            progressBar.setVisibility(View.GONE);
 
                         }
                     }
