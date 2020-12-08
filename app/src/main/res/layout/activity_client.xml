@@ -36,25 +36,25 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.498"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/time_src2" />
+                app:layout_constraintTop_toBottomOf="@+id/time_src" />
 
             <EditText
-                android:id="@+id/time_src2"
+                android:id="@+id/time_src"
                 android:layout_width="154dp"
                 android:layout_height="46dp"
                 android:layout_marginTop="5dp"
                 android:ems="10"
                 android:hint="מהשעה-עד השעה"
-                android:inputType="time"
+                android:inputType="textPersonName"
                 android:textColorHint="#80000000"
                 app:layout_constraintBottom_toTopOf="@+id/textView5"
-                app:layout_constraintEnd_toStartOf="@+id/time_src1"
+                app:layout_constraintEnd_toStartOf="@+id/date_src"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/street_src" />
 
             <EditText
-                android:id="@+id/time_src1"
+                android:id="@+id/date_src"
                 android:layout_width="154dp"
                 android:layout_height="46dp"
                 android:ems="10"
@@ -64,7 +64,7 @@
                 app:layout_constraintBottom_toTopOf="@+id/textView5"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toEndOf="@+id/time_src2"
+                app:layout_constraintStart_toEndOf="@+id/time_src"
                 app:layout_constraintTop_toBottomOf="@+id/city_src" />
 
 
@@ -77,7 +77,7 @@
                 android:hint="רחוב/בית"
                 android:inputType="textPersonName"
                 android:textColorHint="#80000000"
-                app:layout_constraintBottom_toTopOf="@+id/time_src2"
+                app:layout_constraintBottom_toTopOf="@+id/time_src"
                 app:layout_constraintEnd_toStartOf="@+id/city_src"
                 app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toStartOf="parent"
@@ -92,28 +92,28 @@
                 android:hint="עיר"
                 android:inputType="textPersonName"
                 android:textColorHint="#80000000"
-                app:layout_constraintBottom_toTopOf="@+id/time_src1"
+                app:layout_constraintBottom_toTopOf="@+id/date_src"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toEndOf="@+id/street_src"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <EditText
-                android:id="@+id/time_dst2"
+                android:id="@+id/time_dst"
                 android:layout_width="154dp"
                 android:layout_height="46dp"
                 android:ems="10"
                 android:hint="מהשעה-עד השעה"
-                android:inputType="time"
+                android:inputType="textPersonName"
                 android:textColorHint="#80000000"
                 app:layout_constraintBottom_toTopOf="@+id/spinner"
-                app:layout_constraintEnd_toStartOf="@+id/time_dst1"
+                app:layout_constraintEnd_toStartOf="@+id/date_dst"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/street_dst" />
 
             <EditText
-                android:id="@+id/time_dst1"
+                android:id="@+id/date_dst"
                 android:layout_width="154dp"
                 android:layout_height="46dp"
                 android:ems="10"
@@ -123,7 +123,7 @@
                 app:layout_constraintBottom_toTopOf="@+id/spinner"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toEndOf="@+id/time_dst2"
+                app:layout_constraintStart_toEndOf="@+id/time_dst"
                 app:layout_constraintTop_toBottomOf="@+id/city_dst" />
 
             <Button
@@ -146,7 +146,7 @@
                 android:hint="רחוב/בית"
                 android:inputType="textPersonName"
                 android:textColorHint="#80000000"
-                app:layout_constraintBottom_toTopOf="@+id/time_dst2"
+                app:layout_constraintBottom_toTopOf="@+id/time_dst"
                 app:layout_constraintEnd_toStartOf="@+id/city_dst"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
@@ -160,7 +160,7 @@
                 android:hint="עיר"
                 android:inputType="textPersonName"
                 android:textColorHint="#80000000"
-                app:layout_constraintBottom_toTopOf="@+id/time_dst1"
+                app:layout_constraintBottom_toTopOf="@+id/date_dst"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toEndOf="@+id/street_dst"
@@ -174,7 +174,7 @@
                 android:entries="@array/all_product"
                 app:layout_constraintBottom_toTopOf="@+id/notes"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/time_dst2" />
+                app:layout_constraintTop_toBottomOf="@+id/time_dst" />
 
             <EditText
                 android:id="@+id/notes"

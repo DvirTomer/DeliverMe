@@ -33,13 +33,13 @@ public class Client extends AppCompatActivity {
 
         citySrc = findViewById(R.id.city_src);
         streetSrc = findViewById(R.id.street_src);
-        dateSrc = findViewById(R.id.time_src1);
-        timeSrc = findViewById(R.id.time_src2);
+        dateSrc = findViewById(R.id.date_src);
+        timeSrc = findViewById(R.id.time_src);
         note = findViewById(R.id.notes);
         cityDst = findViewById(R.id.city_dst);
         streetDst = findViewById(R.id.street_dst);
-        dateDst = findViewById(R.id.time_dst1);
-        timeDst = findViewById(R.id.time_dst2);
+        dateDst = findViewById(R.id.date_dst);
+        timeDst = findViewById(R.id.time_dst);
         product = findViewById(R.id.spinner);
 //        m = FirebaseAuth.getInstance();
 //        TextView textProduct= (TextView) product.getSelectedView();

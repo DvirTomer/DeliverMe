@@ -1,5 +1,6 @@
 package com.example.deliverme;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.Manifest;
@@ -16,6 +17,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.net.Uri;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
 import org.w3c.dom.Text;
 
 import static android.widget.Toast.LENGTH_SHORT;
@@ -24,12 +31,15 @@ public class Confirmation extends AppCompatActivity {
     TextView text;
     Button send_mail;
         String num , msg ;
+    String phone = "";
+
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_confirmation);
+
 
 
 
@@ -60,16 +70,50 @@ public class Confirmation extends AppCompatActivity {
 
     }
     private void sending(){
-    try {
 
-        SmsManager sms = SmsManager.getDefault();
-        sms.sendTextMessage(num , null ,getIntent().getStringExtra("temp") ,null , null);
-        Toast.makeText(this , "msg sent",Toast.LENGTH_LONG).show();
-    }catch (Exception e){
-        e.printStackTrace();
-        Toast.makeText(this , "Does not sent",Toast.LENGTH_LONG).show();
+        DatabaseReference db = FirebaseDatabase.getInstance().getReference().child("users");
+        db.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                String y;
+                int k = 0;
+                String pac_id = getIntent().getStringExtra("id_");
+                String phone = "";
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()){
+                    phone =  snapshot.child("phone").getValue().toString();
 
-    }
+                    if(k != 0){break;}
+                    for(DataSnapshot kid : snapshot.child("packages").getChildren()){
+//                        String full ="סוג מוצר: "+kid.child("product").getValue().toString()+"\n"+"מוצא: "+ kid.child("citySrc").getValue().toString()+" "+kid.child("streetSrc").getValue().toString()
+//                                +"\n"+"יעד: "+ kid.child("cityDst").getValue().toString();
+                        if(getIntent().getStringExtra("id_").equals(kid.child("pacID").getValue().toString()))
+                        {
+                            k = 1;
+                            kid.getRef().removeValue();
+
+                            break;
+                        }
+                    }
+
+                }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+        try {
+
+            SmsManager sms = SmsManager.getDefault();
+            sms.sendTextMessage(num , null ,getIntent().getStringExtra("temp") ,null , null);
+            Toast.makeText(this , getIntent().getStringExtra("id_"),Toast.LENGTH_LONG).show();
+        }catch (Exception e){
+            e.printStackTrace();
+            Toast.makeText(this , "Does not sent",Toast.LENGTH_LONG).show();
+
+        }
         Intent intent=new Intent(this, MainActivity.class);
         startActivity(intent);
     }
