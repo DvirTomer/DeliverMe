@@ -76,6 +76,8 @@ public class Delivery_Person extends AppCompatActivity {
 //                Toast.makeText(Delivery_Person.this,"clicked"+parent.getItemAtPosition(position).toString(), LENGTH_SHORT).show();
                 selected =""+ parent.getItemAtPosition(position).toString();
                 Toast.makeText(Delivery_Person.this,"clicked"+selected, LENGTH_SHORT).show();
+                view.setSelected(true);
+
             }
         });
 
