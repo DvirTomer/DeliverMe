@@ -80,6 +80,15 @@ public class Login extends AppCompatActivity {
         });
 
     }
+    @Override
+    public void onStart(){
+        super.onStart();
+        if(mhuth.getCurrentUser()!=null){
+            startActivity(new Intent(getApplicationContext(),MainActivity.class));
+            finish();
+        }
+    }
+
     public void create_User()
     {
         Intent intent=new Intent(this,Register.class);

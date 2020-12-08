@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -28,52 +29,42 @@ public class MainActivity extends AppCompatActivity {
 
     DatabaseReference all_name;
     String y="";
-
+    String x="";
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-//        String name ="shalom";
-//        SharedPreferences prefs = getSharedPreferences("deliver",MODE_PRIVATE);
-//        name = prefs.getString("username",)
+
         signout=(Button)findViewById(R.id.Logout);
         send_btn=(Button)findViewById(R.id.send_delivery);
         take_btn =(Button)findViewById(R.id.take_delivery);
 
-
-//        String a = "aviviviviv";
+        ////**** this part for get name from user
         text = (TextView) findViewById(R.id.userName_);
-//        text.setText(a.toString());
 
-        /////
-//        FirebaseUser user=FirebaseAuth.getInstance().getCurrentUser();
-//        String userId= user.getUid();
-//        all_name= FirebaseDatabase.getInstance().getReference("users").child(userId);
-////        ArrayList<String> arr  = new ArrayList<>();
-//        all_name.addValueEventListener(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-////                arr.clear();
-//                for (DataSnapshot snapshot : dataSnapshot.getChildren()){
-//                        y = "id: " + snapshot.child("mail").getValue(String.class);
-//                        text.setText(y.toString());
-//
-//
-//
-//                }
-////                adapter.notifyDataSetChanged();
-//
-//            }
-//
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError error) {
-//
-//            }
-//        });
-//        String x ="1";
-        ////
+        FirebaseUser take_id=FirebaseAuth.getInstance().getCurrentUser();
+
+        String userId= take_id.getUid();
+
+        DatabaseReference user = FirebaseDatabase.getInstance().getReference("users");
+        DatabaseReference user1 = user.child(userId);
+        DatabaseReference all_name = user1.child("allName");
+
+        all_name.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                 x = dataSnapshot.getValue().toString();
+                text.setText("Hallo "+x);
+            }
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+            }
+        });
+        ////****
+
+
         take_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
