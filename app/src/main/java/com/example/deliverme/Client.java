@@ -8,6 +8,8 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Button;
 import android.text.TextUtils;
+import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -17,7 +19,7 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class Client extends AppCompatActivity {
     EditText citySrc, streetSrc, dateSrc, timeSrc,note,cityDst, streetDst, dateDst, timeDst;
-//    Spinner product;
+    Spinner product;
     Button send;
 //    FirebaseAuth m;
 //String ScitySrc = "ariel";
@@ -38,24 +40,17 @@ public class Client extends AppCompatActivity {
         streetDst = findViewById(R.id.street_dst);
         dateDst = findViewById(R.id.time_dst1);
         timeDst = findViewById(R.id.time_dst2);
-//        product = findViewById(R.id.spinner);
+        product = findViewById(R.id.spinner);
 //        m = FirebaseAuth.getInstance();
 //        TextView textProduct= (TextView) product.getSelectedView();
         send = (Button)findViewById(R.id.send_pac);
-
         ////
 //        dbUserPac= FirebaseDatabase.getInstance().getReference("users");
 //        String id=dbUserPac.getKey();
-
         FirebaseUser user=FirebaseAuth.getInstance().getCurrentUser();
         // id auth
         String userId= user.getUid();
-
         dbUserPac= FirebaseDatabase.getInstance().getReference("users").child(userId).child("packages");
-//        String x ="1";
-//        Package pac = new Package(x,x,x,x,x,x,x,x,x,x);
-//                Toast.makeText(Client.this,""+ScitySrc ,Toast.LENGTH_LONG).show();
-
         String pacID = dbUserPac.push().getKey();
 
 
@@ -65,9 +60,7 @@ public class Client extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-
                 String ScitySrc = citySrc.getText().toString().trim();
-
                 String SstreetSrc = streetSrc.getText().toString();
                 String StimeSrc1 = dateSrc.getText().toString();
                 String StimeSrc2 = timeSrc.getText().toString();
@@ -76,69 +69,51 @@ public class Client extends AppCompatActivity {
                 String StimeDst1 = dateDst.getText().toString();
                 String StimeDst2 = timeDst.getText().toString();
                 String Snote = note.getText().toString().trim();
-
-//                String Sproduct = textProduct.getText().toString().trim();
-//
+                String Sproduct=product.getSelectedItem().toString();
 
 
                 if (TextUtils.isEmpty(ScitySrc)) {
-                    citySrc.setError("Source city is Required");
+                    citySrc.setError("אנא בחר/י עיר מקור");
                     return;
                 }
                 if (TextUtils.isEmpty(SstreetSrc)) {
-                    streetSrc.setError("Source street is Required");
+                    streetSrc.setError("אנא בחר/י רחוב מקור");
                     return;
                 }
                 if (TextUtils.isEmpty(StimeSrc1)) {
-                    dateSrc.setError("Source time is Required");
+                    dateSrc.setError("אנא בחר/י תאריך מקור");
                     return;
                 }
                 if (TextUtils.isEmpty(StimeSrc2)) {
-                    timeSrc.setError("Source time is Required");
+                    timeSrc.setError("אנא בחר/י שעת מקור");
                     return;
                 }
                 if (TextUtils.isEmpty(ScityDst)) {
-                    cityDst.setError("Destination city is Required");
+                    cityDst.setError("אנא בחר/י עיר יעד");
                     return;
                 }
                 if (TextUtils.isEmpty(SstreetDst)) {
-                    streetDst.setError("Destination street is Required");
+                    streetDst.setError("אנא בחר/י רחוב יעד");
                     return;
                 }
                 if (TextUtils.isEmpty(StimeDst1)) {
-                    dateDst.setError("Destination time is Required");
+                    dateDst.setError("אנא בחר/י תאריך יעד");
                     return;
                 }
                 if (TextUtils.isEmpty(StimeDst2)) {
-                    timeDst.setError("Destination time is Required");
+                    timeDst.setError("אנא בחר/י שעת יעד");
                     return;
                 }
-
-                Package pac = new Package(ScitySrc,SstreetSrc,StimeSrc1,StimeSrc2,ScityDst,SstreetDst,StimeDst1,StimeDst2,Snote,"x",pacID,userId);
+                if (Sproduct.equals("סוג מוצר...")) {
+                    TextView errorText =(TextView)product.getSelectedView();
+                    errorText.setText("אנא בחר/י סוג מוצר");
+                    return;
+                }
+                Package pac = new Package(ScitySrc,SstreetSrc,StimeSrc1,StimeSrc2,ScityDst,SstreetDst,StimeDst1,StimeDst2,Snote,Sproduct,pacID,userId);
                 dbUserPac.child(pacID).setValue(pac);
-////                if (TextUtils.isEmpty(Sproduct)) {
-////                   textProduct.setError("נא לבחור סוג מוצר");
-////                    return;
-////                }
-//
-//                if(user!=null)
-//                {
-//                Package pac = new Package(ScitySrc,SstreetSrc,StimeSrc1,StimeSrc2,Snote,ScityDst,SstreetDst,StimeDst1,StimeDst2,"ארון");
-
-//                }
-//                else{
-//                }
-
-
-
-
-
 
                 sendTo();
-//
             }
-//
-//
         });
     }
     public void sendTo()
@@ -147,10 +122,5 @@ public class Client extends AppCompatActivity {
         Intent intent=new Intent(this, MainActivity.class);
         startActivity(intent);
 
-    }
-    public void addPack(Package pac,String pacID)
-    {
-//        dbUserPac.setValue(pac);
-//                dbUserPac.setValue("pac");
     }
 }

@@ -34,7 +34,7 @@ public class Login extends AppCompatActivity {
 //    ProgressBar progressBar;
     FirebaseAuth mhuth;
 //    static String flag="";
-    String flag[];
+    String flag;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,7 +43,7 @@ public class Login extends AppCompatActivity {
         Email = findViewById(R.id.editTextTextEmailAddress4);
         mLogin = findViewById(R.id.BLogin);
         Create = (TextView)findViewById(R.id.create);
-        flag = new String [1];
+        flag = "0";
 //        progressBar = findViewById(R.id.progressBar2);
         mhuth = FirebaseAuth.getInstance();
         mLogin.setOnClickListener(new View.OnClickListener() {
@@ -72,16 +72,16 @@ public class Login extends AppCompatActivity {
                             Toast.makeText(Login.this, "התחברות בוצעה בהצלחה", Toast.LENGTH_SHORT).show();
 //                          check_admin();
                            String admin_mail= mhuth.getCurrentUser().getEmail();
-                            if(admin_mail=="admin1@gmail.com") // is Admin
+                            Toast.makeText(Login.this, email, Toast.LENGTH_SHORT).show();
+                            switch (email)
                             {
-                                startActivity(new Intent(getApplicationContext(), Admin.class));
-
+                                case "admin1@gmail.com":
+                                    startActivity(new Intent(getApplicationContext(), Admin.class));
+                                    break;
+                                default:
+                                    startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                                    break;
                             }
-                            else // not admin
-                            {
-                                startActivity(new Intent(getApplicationContext(), MainActivity.class));
-                            }
-
                         } else {
                             Toast.makeText(Login.this, "שגיאה!" + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
 //                            progressBar.setVisibility(View.GONE);
@@ -128,7 +128,7 @@ public class Login extends AppCompatActivity {
 //            @Override
 //            public void onDataChange(DataSnapshot dataSnapshot) {
 //
-//                flag[0]= dataSnapshot.getValue().toString();
+//                flag= dataSnapshot.getValue().toString();
 //
 //
 //            }
