@@ -8,17 +8,29 @@ public class User {
     String allName;
     String phone;
     String mail;
+    String admin;
+
 //    ArrayList <Package> clientPac;
 //    ArrayList <Package> messengerPac;
 
-    public User(String id, String allName, String mail)
+    public User(String id, String allName, String mail, String phone, String admin)
     {
         this.id=id;
         this.allName=allName;
         this.mail=mail;
-        this.phone="";
+        this.phone=phone;
+        this.admin=admin;
+
 //        clientPac=new ArrayList<Package>();
 //        messengerPac=new ArrayList<Package>();
+    }
+
+    public void setAdmin(String admin) {
+        this.admin = admin;
+    }
+
+    public String getAdmin() {
+        return admin;
     }
 
     public String getId() {

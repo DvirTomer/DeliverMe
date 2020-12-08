@@ -17,15 +17,24 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.firestore.DocumentReference;
+
+import java.lang.reflect.Array;
 
 public class Login extends AppCompatActivity {
     EditText Email, password;
     Button mLogin;
     TextView Create;
-    ProgressBar progressBar;
+//    ProgressBar progressBar;
     FirebaseAuth mhuth;
-
-
+//    static String flag="";
+    String flag[];
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,6 +43,7 @@ public class Login extends AppCompatActivity {
         Email = findViewById(R.id.editTextTextEmailAddress4);
         mLogin = findViewById(R.id.BLogin);
         Create = (TextView)findViewById(R.id.create);
+        flag = new String [1];
 //        progressBar = findViewById(R.id.progressBar2);
         mhuth = FirebaseAuth.getInstance();
         mLogin.setOnClickListener(new View.OnClickListener() {
@@ -60,7 +70,17 @@ public class Login extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             Toast.makeText(Login.this, "התחברות בוצעה בהצלחה", Toast.LENGTH_SHORT).show();
-                            startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                          check_admin();
+                            if(flag[0]=="1") // is Admin
+                            {
+                                startActivity(new Intent(getApplicationContext(), Admin.class));
+
+                            }
+                            else // not admin
+                            {
+                                startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                            }
+
                         } else {
                             Toast.makeText(Login.this, "שגיאה!" + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
 //                            progressBar.setVisibility(View.GONE);
@@ -81,7 +101,8 @@ public class Login extends AppCompatActivity {
 
     }
     @Override
-    public void onStart(){
+    public void onStart()
+    {
         super.onStart();
         if(mhuth.getCurrentUser()!=null){
             startActivity(new Intent(getApplicationContext(),MainActivity.class));
@@ -94,6 +115,29 @@ public class Login extends AppCompatActivity {
         Intent intent=new Intent(this,Register.class);
         startActivity(intent);
     }
+    public void check_admin()
+    {
+
+        FirebaseUser take_id=FirebaseAuth.getInstance().getCurrentUser();
+        String userId= take_id.getUid();
+        DatabaseReference user = FirebaseDatabase.getInstance().getReference("users");
+        DatabaseReference user1 = user.child(userId);
+        DatabaseReference Admin = user1.child("admin");
+        Admin.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                flag[0]= dataSnapshot.getValue().toString();
+
+
+            }
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+            }
+        });
+
+    }
+
 }
 
 

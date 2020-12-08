@@ -14,8 +14,10 @@ public class Package {
     String timeDst2;
     String note;
     String product;
+    String pacID;
+    String userID;
 
-    public Package(String citySrc, String streetSrc, String timeSrc1, String timeSrc2, String cityDst, String streetDst, String timeDst1, String timeDst2, String note, String product) {
+    public Package(String citySrc, String streetSrc, String timeSrc1, String timeSrc2, String cityDst, String streetDst, String timeDst1, String timeDst2, String note, String product, String pacID, String userID) {
         this.citySrc = citySrc;
         this.streetSrc = streetSrc;
         this.timeSrc1 = timeSrc1;
@@ -26,6 +28,8 @@ public class Package {
         this.timeDst1 = timeDst1;
         this.timeDst2 = timeDst2;
         this.product = product;
+        this.pacID=pacID;
+        this.userID=userID;
     }
 
     public String getCitySrc() {
@@ -78,6 +82,22 @@ public class Package {
 
     public void setTimeSrc1(String timeSrc1) {
         this.timeSrc1 = timeSrc1;
+    }
+
+    public void setPacID(String pacID) {
+        this.pacID = pacID;
+    }
+
+    public void setUserID(String userID) {
+        this.userID = userID;
+    }
+
+    public String getPacID() {
+        return pacID;
+    }
+
+    public String getUserID() {
+        return userID;
     }
 
     public void setTimeSrc2(String timeSrc2) {

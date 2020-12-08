@@ -21,7 +21,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 public class Register extends AppCompatActivity {
-    EditText AllName, Password, Mail;
+    EditText AllName, Password, Mail, Phone;
     TextView loginbutton;
     Button regButton;
     FirebaseAuth mhuth;
@@ -40,6 +40,7 @@ public class Register extends AppCompatActivity {
         regButton = findViewById(R.id.Reg_id);
         Password = findViewById(R.id.Password_id);
         progressBar = findViewById(R.id.Loading_id);
+        Phone = findViewById(R.id.user_phone);
         dbUser= FirebaseDatabase.getInstance().getReference("users");
 
 
@@ -56,6 +57,7 @@ public class Register extends AppCompatActivity {
                 String email = Mail.getText().toString().trim();
                 String password = Password.getText().toString().trim();
                 String allName = AllName.getText().toString().trim();
+                String phone=Phone.getText().toString().trim();
 
                 if (TextUtils.isEmpty(email)) {
                     Mail.setError("Email is Required");
@@ -63,6 +65,10 @@ public class Register extends AppCompatActivity {
                 }
                 if (TextUtils.isEmpty(password)) {
                     Password.setError("password is Required");
+                    return;
+                }
+                if (TextUtils.isEmpty(phone)) {
+                    Phone.setError("phone is Required");
                     return;
                 }
                 if (password.length() < 6) {
@@ -83,7 +89,7 @@ public class Register extends AppCompatActivity {
                             String id =mhuth.getCurrentUser().getUid();
 //                            }
 //                            String id=dbUser.push().getKey();
-                            User user=new User(id,allName,email);
+                            User user=new User(id,allName,email,phone,"0");
                             dbUser.child(id).setValue(user);
 
                             Toast.makeText(Register.this, "User created",Toast.LENGTH_SHORT).show();
