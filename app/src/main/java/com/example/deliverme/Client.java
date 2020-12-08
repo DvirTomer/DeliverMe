@@ -16,6 +16,8 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.sql.Time;
+
 public class Client extends AppCompatActivity {
     EditText citySrc, streetSrc, timeSrc1,timeSrc2,note,cityDst, streetDst, timeDst1,timeDst2;
 //    Spinner product;
@@ -115,7 +117,7 @@ public class Client extends AppCompatActivity {
                     return;
                 }
 
-                Package pac = new Package(ScitySrc,SstreetSrc,StimeSrc1,StimeSrc2,ScityDst,SstreetDst,StimeDst1,StimeDst2,"Snote","x");
+                Package pac = new Package(ScitySrc,SstreetSrc,StimeSrc1,StimeSrc2,ScityDst,SstreetDst,StimeDst1,StimeDst2,Snote,"x",pacID,userId);
                 dbUserPac.child(pacID).setValue(pac);
 ////                if (TextUtils.isEmpty(Sproduct)) {
 ////                   textProduct.setError("נא לבחור סוג מוצר");
