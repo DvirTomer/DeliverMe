@@ -49,17 +49,17 @@ public class Delivery_Person extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 arraylist.clear();
+                String y;
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()){
-
-                    String y = "id: "+snapshot.child("id").getValue(String.class)+" mail:"+snapshot.child("mail").getValue(String.class);
-                    arraylist.add(y);
-//                    arraylist.add(snapshot.getValue().toString());
-//                    User u = new User(snapshot.getValue(User.class).id,snapshot.getValue(User.class).allName, snapshot.getValue(User.class).mail);
-//                    arraylist.add(u.id);
-
-//                    String t = x.id;
-//                    arraylist.add(t);
-
+                    ////////////////////////////////////////////////
+//                    String y = "id: "+snapshot.child("id").getValue(String.class)+" mail:"+snapshot.child("mail").getValue(String.class);
+//                    arraylist.add(y);
+                    ////////////////////////////////////
+                    for(DataSnapshot kid : snapshot.child("packages").getChildren()){
+                        y = kid.child("note").getValue().toString();
+                        String x = kid.child("product").getValue().toString();
+                        arraylist.add(y+"***"+x);
+                    }
                 }
                 adapter.notifyDataSetChanged();
 
