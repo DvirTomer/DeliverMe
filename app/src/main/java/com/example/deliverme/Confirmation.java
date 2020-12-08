@@ -2,8 +2,12 @@ package com.example.deliverme;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
+import android.telephony.SmsManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -19,12 +23,20 @@ import static android.widget.Toast.LENGTH_SHORT;
 public class Confirmation extends AppCompatActivity {
     TextView text;
     Button send_mail;
+        String num , msg ;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_confirmation);
+
+
+
+        num = "+972526664887";
+//        msg="tomer king";
+
+        /////
         String temp2 = getIntent().getStringExtra("temp");
         Toast.makeText(Confirmation.this,temp2, LENGTH_SHORT).show();
         text = (TextView) findViewById(R.id.confim_id);
@@ -33,39 +45,33 @@ public class Confirmation extends AppCompatActivity {
         send_mail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                sending();
-
-
-
+//                sending();
+            if (Build.VERSION.SDK_INT>=Build.VERSION_CODES.M){
+                if(checkSelfPermission(Manifest.permission.SEND_SMS) == PackageManager.PERMISSION_GRANTED){
+                    sending();
+                }else{
+                    requestPermissions(new String[]{Manifest.permission.SEND_SMS},1);
+                }
+            }
             }
         });
+        /////
+
 
     }
-    public void sending(){
-        sendEmail();
+    private void sending(){
+    try {
+
+        SmsManager sms = SmsManager.getDefault();
+        sms.sendTextMessage(num , null ,getIntent().getStringExtra("temp") ,null , null);
+        Toast.makeText(this , "msg sent",Toast.LENGTH_LONG).show();
+    }catch (Exception e){
+        e.printStackTrace();
+        Toast.makeText(this , "Does not sent",Toast.LENGTH_LONG).show();
+
     }
-    protected void sendEmail() {
-        Log.i("Send email", "");
-
-        String[] TO = {"mayplex@gmail.com"};
-        String[] CC = {"mayplex@gmail.com"};
-        Intent emailIntent = new Intent(Intent.ACTION_SEND);
-        emailIntent.setData(Uri.parse("mailto:"));
-        emailIntent.setType("text/plain");
-
-
-        emailIntent.putExtra(Intent.EXTRA_EMAIL, TO);
-        emailIntent.putExtra(Intent.EXTRA_CC, CC);
-        emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Your subject");
-        emailIntent.putExtra(Intent.EXTRA_TEXT, "Email message goes here");
-
-        try {
-            startActivity(Intent.createChooser(emailIntent, "Send mail..."));
-            finish();
-            Log.i("Finished sending email...", "");
-        } catch (android.content.ActivityNotFoundException ex) {
-            Toast.makeText(Confirmation.this,
-                    "There is no email client installed.", Toast.LENGTH_SHORT).show();
-        }
+        Intent intent=new Intent(this, MainActivity.class);
+        startActivity(intent);
     }
+
 }
