@@ -1,32 +1,29 @@
 package com.example.deliverme;
 
-import android.widget.EditText;
-import android.widget.Spinner;
-
 public class Package {
     String citySrc;
     String streetSrc;
-    String timeSrc1;
-    String timeSrc2;
+    String dateSrc;
+    String timeSrc;
     String cityDst;
     String streetDst;
-    String timeDst1;
-    String timeDst2;
+    String dateDst;
+    String timeDst;
     String note;
     String product;
     String pacID;
     String userID;
 
-    public Package(String citySrc, String streetSrc, String timeSrc1, String timeSrc2, String cityDst, String streetDst, String timeDst1, String timeDst2, String note, String product, String pacID, String userID) {
+    public Package(String citySrc, String streetSrc, String dateSrc, String timeSrc, String cityDst, String streetDst, String dateDst, String timeDst, String note, String product, String pacID, String userID) {
         this.citySrc = citySrc;
         this.streetSrc = streetSrc;
-        this.timeSrc1 = timeSrc1;
-        this.timeSrc2 = timeSrc2;
+        this.dateSrc = dateSrc;
+        this.timeSrc = timeSrc;
         this.note = note;
         this.cityDst = cityDst;
         this.streetDst = streetDst;
-        this.timeDst1 = timeDst1;
-        this.timeDst2 = timeDst2;
+        this.dateDst = dateDst;
+        this.timeDst = timeDst;
         this.product = product;
         this.pacID=pacID;
         this.userID=userID;
@@ -40,12 +37,12 @@ public class Package {
         return streetSrc;
     }
 
-    public String getTimeSrc1() {
-        return timeSrc1;
+    public String getDateSrc() {
+        return dateSrc;
     }
 
-    public String getTimeSrc2() {
-        return timeSrc2;
+    public String getTimeSrc() {
+        return timeSrc;
     }
 
     public String getNote() {
@@ -60,12 +57,12 @@ public class Package {
         return streetDst;
     }
 
-    public String getTimeDst1() {
-        return timeDst1;
+    public String getDateDst() {
+        return dateDst;
     }
 
-    public String getTimeDst2() {
-        return timeDst2;
+    public String getTimeDst() {
+        return timeDst;
     }
 
     public String getProduct() {
@@ -80,8 +77,8 @@ public class Package {
         this.streetSrc = streetSrc;
     }
 
-    public void setTimeSrc1(String timeSrc1) {
-        this.timeSrc1 = timeSrc1;
+    public void setDateSrc(String dateSrc) {
+        this.dateSrc = dateSrc;
     }
 
     public void setPacID(String pacID) {
@@ -100,8 +97,8 @@ public class Package {
         return userID;
     }
 
-    public void setTimeSrc2(String timeSrc2) {
-        this.timeSrc2 = timeSrc2;
+    public void setTimeSrc(String timeSrc) {
+        this.timeSrc = timeSrc;
     }
 
     public void setNote(String note) {
@@ -116,12 +113,12 @@ public class Package {
         this.streetDst = streetDst;
     }
 
-    public void setTimeDst1(String timeDst1) {
-        this.timeDst1 = timeDst1;
+    public void setDateDst(String dateDst) {
+        this.dateDst = dateDst;
     }
 
-    public void setTimeDst2(String timeDst2) {
-        this.timeDst2 = timeDst2;
+    public void setTimeDst(String timeDst) {
+        this.timeDst = timeDst;
     }
 
     public void setProduct(String product) {

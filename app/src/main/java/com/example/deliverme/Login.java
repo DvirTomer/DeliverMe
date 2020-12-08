@@ -70,8 +70,9 @@ public class Login extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             Toast.makeText(Login.this, "התחברות בוצעה בהצלחה", Toast.LENGTH_SHORT).show();
-                          check_admin();
-                            if(flag[0]=="1") // is Admin
+//                          check_admin();
+                           String admin_mail= mhuth.getCurrentUser().getEmail();
+                            if(admin_mail=="admin1@gmail.com") // is Admin
                             {
                                 startActivity(new Intent(getApplicationContext(), Admin.class));
 
@@ -115,28 +116,28 @@ public class Login extends AppCompatActivity {
         Intent intent=new Intent(this,Register.class);
         startActivity(intent);
     }
-    public void check_admin()
-    {
-
-        FirebaseUser take_id=FirebaseAuth.getInstance().getCurrentUser();
-        String userId= take_id.getUid();
-        DatabaseReference user = FirebaseDatabase.getInstance().getReference("users");
-        DatabaseReference user1 = user.child(userId);
-        DatabaseReference Admin = user1.child("admin");
-        Admin.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-
-                flag[0]= dataSnapshot.getValue().toString();
-
-
-            }
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-            }
-        });
-
-    }
+//    public void check_admin()
+//    {
+//
+//        FirebaseUser take_id=FirebaseAuth.getInstance().getCurrentUser();
+//        String userId= take_id.getUid();
+//        DatabaseReference user = FirebaseDatabase.getInstance().getReference("users");
+//        DatabaseReference user1 = user.child(userId);
+//        DatabaseReference Admin = user1.child("admin");
+//        Admin.addValueEventListener(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(DataSnapshot dataSnapshot) {
+//
+//                flag[0]= dataSnapshot.getValue().toString();
+//
+//
+//            }
+//            @Override
+//            public void onCancelled(DatabaseError databaseError) {
+//            }
+//        });
+//
+//    }
 
 }
 
