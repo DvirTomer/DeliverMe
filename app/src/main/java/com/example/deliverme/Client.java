@@ -144,6 +144,7 @@ public class Client extends AppCompatActivity {
     }
     public void sendTo()
     {
+        Toast.makeText(Client.this, "המשלוח הועלה בהצלחה ומחכה לאישור שליח", Toast.LENGTH_LONG).show();
         Intent intent=new Intent(this, MainActivity.class);
         startActivity(intent);
 
