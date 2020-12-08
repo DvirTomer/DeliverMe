@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.Spinner;
 import android.widget.Button;
 import android.text.TextUtils;
 import android.widget.Toast;
@@ -17,7 +16,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 public class Client extends AppCompatActivity {
-    EditText citySrc, streetSrc, timeSrc1,timeSrc2,note,cityDst, streetDst, timeDst1,timeDst2;
+    EditText citySrc, streetSrc, dateSrc, timeSrc,note,cityDst, streetDst, dateDst, timeDst;
 //    Spinner product;
     Button send;
 //    FirebaseAuth m;
@@ -32,13 +31,13 @@ public class Client extends AppCompatActivity {
 
         citySrc = findViewById(R.id.city_src);
         streetSrc = findViewById(R.id.street_src);
-        timeSrc1 = findViewById(R.id.time_src1);
-        timeSrc2 = findViewById(R.id.time_src2);
+        dateSrc = findViewById(R.id.time_src1);
+        timeSrc = findViewById(R.id.time_src2);
         note = findViewById(R.id.notes);
         cityDst = findViewById(R.id.city_dst);
         streetDst = findViewById(R.id.street_dst);
-        timeDst1 = findViewById(R.id.time_dst1);
-        timeDst2 = findViewById(R.id.time_dst2);
+        dateDst = findViewById(R.id.time_dst1);
+        timeDst = findViewById(R.id.time_dst2);
 //        product = findViewById(R.id.spinner);
 //        m = FirebaseAuth.getInstance();
 //        TextView textProduct= (TextView) product.getSelectedView();
@@ -70,12 +69,12 @@ public class Client extends AppCompatActivity {
                 String ScitySrc = citySrc.getText().toString().trim();
 
                 String SstreetSrc = streetSrc.getText().toString();
-                String StimeSrc1 = timeSrc1.getText().toString();
-                String StimeSrc2 = timeSrc2.getText().toString();
+                String StimeSrc1 = dateSrc.getText().toString();
+                String StimeSrc2 = timeSrc.getText().toString();
                 String ScityDst = cityDst.getText().toString();
                 String SstreetDst = streetDst.getText().toString();
-                String StimeDst1 = timeDst1.getText().toString();
-                String StimeDst2 = timeDst2.getText().toString();
+                String StimeDst1 = dateDst.getText().toString();
+                String StimeDst2 = timeDst.getText().toString();
                 String Snote = note.getText().toString().trim();
 
 //                String Sproduct = textProduct.getText().toString().trim();
@@ -91,11 +90,11 @@ public class Client extends AppCompatActivity {
                     return;
                 }
                 if (TextUtils.isEmpty(StimeSrc1)) {
-                    timeSrc1.setError("Source time is Required");
+                    dateSrc.setError("Source time is Required");
                     return;
                 }
                 if (TextUtils.isEmpty(StimeSrc2)) {
-                    timeSrc2.setError("Source time is Required");
+                    timeSrc.setError("Source time is Required");
                     return;
                 }
                 if (TextUtils.isEmpty(ScityDst)) {
@@ -107,15 +106,15 @@ public class Client extends AppCompatActivity {
                     return;
                 }
                 if (TextUtils.isEmpty(StimeDst1)) {
-                    timeDst1.setError("Destination time is Required");
+                    dateDst.setError("Destination time is Required");
                     return;
                 }
                 if (TextUtils.isEmpty(StimeDst2)) {
-                    timeDst2.setError("Destination time is Required");
+                    timeDst.setError("Destination time is Required");
                     return;
                 }
 
-                Package pac = new Package(ScitySrc,SstreetSrc,StimeSrc1,StimeSrc2,ScityDst,SstreetDst,StimeDst1,StimeDst2,"Snote","x");
+                Package pac = new Package(ScitySrc,SstreetSrc,StimeSrc1,StimeSrc2,ScityDst,SstreetDst,StimeDst1,StimeDst2,Snote,"x",pacID,userId);
                 dbUserPac.child(pacID).setValue(pac);
 ////                if (TextUtils.isEmpty(Sproduct)) {
 ////                   textProduct.setError("נא לבחור סוג מוצר");

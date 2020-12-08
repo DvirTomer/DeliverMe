@@ -9,7 +9,7 @@
 
     <TextView
         android:id="@+id/textView"
-        android:layout_width="154dp"
+        android:layout_width="134dp"
         android:layout_height="56dp"
         android:layout_marginTop="96dp"
         android:text="הרשמה"
@@ -20,9 +20,9 @@
 
     <EditText
         android:id="@+id/userName_id"
-        android:layout_width="217dp"
-        android:layout_height="45dp"
-        android:layout_marginBottom="472dp"
+        android:layout_width="211dp"
+        android:layout_height="44dp"
+        android:layout_marginBottom="499dp"
         android:ems="10"
         android:hint="שם מלא"
         android:inputType="textPersonName"
@@ -31,12 +31,30 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
+
+    <EditText
+        android:id="@+id/user_phone"
+        android:layout_width="211dp"
+        android:layout_height="44dp"
+        android:layout_marginBottom="390dp"
+        android:ems="10"
+        android:hint="טלפון"
+        android:gravity="right"
+        android:inputType="phone"
+        android:textColorHint="#80000000"
+
+
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.515"
+        app:layout_constraintStart_toStartOf="parent" />
+
     <EditText
         android:id="@+id/mail_id"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="3dp"
-        android:layout_marginTop="36dp"
+        android:layout_marginTop="11dp"
         android:ems="10"
         android:hint='דוא"ל'
         android:inputType="textEmailAddress"
@@ -48,7 +66,7 @@
         android:id="@+id/Password_id"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="47dp"
+        android:layout_marginTop="60dp"
         android:layout_marginEnd="1dp"
         android:ems="10"
         android:hint="                                 סיסמה "
@@ -61,7 +79,7 @@
         android:id="@+id/Reg_id"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="64dp"
+        android:layout_marginTop="17dp"
         android:text="הירשם"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -71,7 +89,7 @@
         android:id="@+id/connect_id"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="264dp"
+        android:layout_marginBottom="240dp"
         android:shadowColor="#FFFFFF"
         android:text="משתמש קיים? התחבר כאן"
         android:textColorHint="#80000000"
@@ -85,12 +103,12 @@
         style="?android:attr/progressBarStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="18dp"
+        android:layout_marginBottom="164dp"
         android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintVertical_bias="0.07" />
+        app:layout_constraintStart_toStartOf="parent" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
