@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -21,14 +22,15 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
+import static android.widget.Toast.LENGTH_SHORT;
+
 public class MainActivity extends AppCompatActivity {
     Button signout;
     TextView text;
-
+    TextView text_deliver;
    private Button send_btn, take_btn;
 
     DatabaseReference all_name;
-    String y="";
     String x="";
 
 
@@ -40,9 +42,10 @@ public class MainActivity extends AppCompatActivity {
         signout=(Button)findViewById(R.id.Logout);
         send_btn=(Button)findViewById(R.id.send_delivery);
         take_btn =(Button)findViewById(R.id.take_delivery);
+        text_deliver = (TextView) findViewById(R.id.textGrid);
 
         ////**** this part for get name from user
-        text = (TextView) findViewById(R.id.userName_);
+        text = (TextView)findViewById(R.id.userName_);
 
         FirebaseUser take_id=FirebaseAuth.getInstance().getCurrentUser();
 
@@ -77,16 +80,27 @@ public class MainActivity extends AppCompatActivity {
                 open_send();
             }
         });
-
+        text.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                move_profile();
+            }
+        });
         signout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 FirebaseAuth.getInstance().signOut();
-                startActivity(new Intent(getApplicationContext(), Register.class));
+                startActivity(new Intent(getApplicationContext(), Login.class));
                 finish();
             }
 
         });
+//        text_deliver.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                move_profile();
+//            }
+//        });
     }
     public void open_send()
     {
@@ -96,6 +110,12 @@ public class MainActivity extends AppCompatActivity {
     public void open_take()
     {
         Intent intent=new Intent(this, Delivery_Person.class);
+        startActivity(intent);
+    }
+    public void move_profile()
+    {
+//        Toast.makeText(MainActivity.this,"clicked", LENGTH_SHORT).show();
+        Intent intent=new Intent(this, Prof.class);
         startActivity(intent);
     }
 }
