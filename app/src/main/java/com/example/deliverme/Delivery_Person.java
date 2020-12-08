@@ -16,6 +16,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
+import java.util.Hashtable;
+
 import androidx.annotation.NonNull;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -27,6 +29,10 @@ public class Delivery_Person extends AppCompatActivity {
     ListView listview;
     Button confirm;
     String selected = "";
+    String pack;
+    String uid="";
+    Hashtable<String,String> hash_id = new Hashtable<String, String>();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,6 +40,8 @@ public class Delivery_Person extends AppCompatActivity {
         ///// Listview
         listview = (ListView) findViewById(R.id.lv1);
         ArrayList<String> arraylist = new ArrayList<>();
+        ArrayList<String> helper = new ArrayList<>();
+
         ArrayAdapter adapter = new ArrayAdapter<String>(this,R.layout.list,arraylist);
         listview.setAdapter(adapter);
 
@@ -50,15 +58,21 @@ public class Delivery_Person extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 arraylist.clear();
                 String y;
+                hash_id.clear();
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()){
-                    ////////////////////////////////////////////////
-//                    String y = "id: "+snapshot.child("id").getValue(String.class)+" mail:"+snapshot.child("mail").getValue(String.class);
-//                    arraylist.add(y);
-                    ////////////////////////////////////
                     for(DataSnapshot kid : snapshot.child("packages").getChildren()){
-                        y = kid.child("note").getValue().toString();
-                        String x = kid.child("product").getValue().toString();
-                        arraylist.add(y+"***"+x);
+                        String full ="סוג מוצר: "+kid.child("product").getValue().toString()+"\n"+"מוצא: "+ kid.child("citySrc").getValue().toString()+" "+kid.child("streetSrc").getValue().toString()
+                                +"\n"+"יעד: "+ kid.child("cityDst").getValue().toString()
+                                +" "+kid.child("streetDst").getValue().toString()+"\n"+"זמני משלוח: "+"\n"+"תאריך: "+kid.child("dateDst").getValue().toString()+"\n"
+                                +"שעות משלוח: "+kid.child("timeDst").getValue().toString();
+
+                        String ID = kid.child("pacID").getValue().toString();
+//                        y = kid.child("note").getValue().toString();
+//                        String x = kid.child("product").getValue().toString();
+                        hash_id.put(full,ID);
+//                        String ans = "    "+hash_id.get(full);
+                        arraylist.add(full);
+
                     }
                 }
                 adapter.notifyDataSetChanged();
@@ -75,9 +89,9 @@ public class Delivery_Person extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 //                Toast.makeText(Delivery_Person.this,"clicked"+parent.getItemAtPosition(position).toString(), LENGTH_SHORT).show();
                 selected =""+ parent.getItemAtPosition(position).toString();
+//                String val = hash_id.get(full);
                 Toast.makeText(Delivery_Person.this,"clicked"+selected, LENGTH_SHORT).show();
                 view.setSelected(true);
-
             }
         });
 
@@ -100,6 +114,10 @@ public class Delivery_Person extends AppCompatActivity {
     public void choose_package(){
         Intent intent = new Intent(this, Confirmation.class);
         intent.putExtra("temp", selected);
+        intent.putExtra("id_", hash_id.get(selected));
+        hash_id.remove(selected);
+
+
         startActivity(intent);
     }
 
