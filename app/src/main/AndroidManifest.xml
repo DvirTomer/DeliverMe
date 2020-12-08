@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.DeliverMe">
         <activity android:name=".Admin"></activity>
-        <activity android:name=".Confirmation" />
+        <activity android:name=".Prof"></activity>
         <activity android:name=".Delivery_Person" />
         <activity android:name=".Client" />
         <activity android:name=".Login">
