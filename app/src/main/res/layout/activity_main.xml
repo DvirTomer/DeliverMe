@@ -6,7 +6,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/back"
+    android:background="@drawable/img_for_baclround"
     android:orientation="vertical"
     android:weightSum="10"
     tools:context=".MainActivity">
@@ -49,7 +49,7 @@
     <GridLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="4"
+        android:layout_weight="4.5"
         android:alignmentMode="alignMargins"
         android:columnCount="2"
         android:columnOrderPreserved="false"
@@ -74,7 +74,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal|center_vertical"
-                android:layout_margin="16dp"
+                android:layout_margin="18dp"
                 android:orientation="vertical">
 
                 <ImageView
@@ -85,13 +85,19 @@
 
                 <Button
                     android:id="@+id/take_delivery"
+                    android:text="take delivery"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="take delivery"
+                    app:backgroundTint="@null"
+                    android:background="@drawable/button"
+                    android:shadowColor="#120205"
+                    android:shadowDx="0"
+                    android:shadowDy="0"
+                    android:shadowRadius="5"
                     android:textAlignment="center"
-                    android:textColor="@color/black"
+                    android:textColor="#FFFFFF"
                     android:textSize="18sp"
-                    android:textStyle="bold" />
+                  />
 
             </LinearLayout>
         </androidx.cardview.widget.CardView>
@@ -123,13 +129,18 @@
 
                 <Button
                     android:id="@+id/send_delivery"
+                    android:text="send delivery"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="send delivery"
+                    app:backgroundTint="@null"
+                    android:background="@drawable/button"
+                    android:shadowColor="#120205"
+                    android:shadowDx="0"
+                    android:shadowDy="0"
+                    android:shadowRadius="5"
                     android:textAlignment="center"
-                    android:textColor="@color/black"
-                    android:textSize="18sp"
-                    android:textStyle="bold" />
+                    android:textColor="#FFFFFF"
+                    android:textSize="18sp" />
 
             </LinearLayout>
         </androidx.cardview.widget.CardView>
@@ -143,13 +154,18 @@
 
     <Button
         android:id="@+id/Logout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:text="Logout"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.499" />
+        android:layout_width="157dp"
+        android:layout_height="46dp"
+        android:layout_gravity="center_horizontal"
+        android:background="@drawable/button"
+        android:shadowColor="#120205"
+        android:shadowDx="0"
+        android:shadowDy="0"
+        android:shadowRadius="5"
+        android:textAlignment="center"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp"
+        app:backgroundTint="@null" />
 
 </LinearLayout>

@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/img_for_baclround"
     tools:context=".Confirmation">
 
     <TextView
@@ -27,7 +28,16 @@
         android:layout_marginTop="8dp"
         android:text="שלח הודעה לבעל החבילה"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.45"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/confim_id" />
+        app:layout_constraintTop_toBottomOf="@+id/confim_id"
+        android:layout_gravity="center_horizontal"
+        android:background="@drawable/button"
+        android:shadowColor="#120205"
+        android:shadowDx="0"
+        android:shadowDy="0"
+        android:shadowRadius="5"
+        android:textAlignment="center"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp"
+        app:backgroundTint="@null" />
 </androidx.constraintlayout.widget.ConstraintLayout>
