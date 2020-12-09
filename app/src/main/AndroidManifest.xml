@@ -22,6 +22,7 @@
         </activity>
         <activity android:name=".Register" />
         <activity android:name=".MainActivity" />
+        <activity android:name=".Confirmation" />
     </application>
 
 </manifest>

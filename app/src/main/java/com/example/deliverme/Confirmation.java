@@ -75,27 +75,36 @@ public class Confirmation extends AppCompatActivity {
         db.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                String y;
-                int k = 0;
-                String pac_id = getIntent().getStringExtra("id_");
-                String phone = "";
-                for (DataSnapshot snapshot : dataSnapshot.getChildren()){
-                    phone =  snapshot.child("phone").getValue().toString();
 
-                    if(k != 0){break;}
-                    for(DataSnapshot kid : snapshot.child("packages").getChildren()){
+                try{
+                    String y;
+                    int k = 0;
+                    String pac_id = getIntent().getStringExtra("id_");
+                    String phone = "";
+                    for (DataSnapshot snapshot : dataSnapshot.getChildren()){
+                        phone =  snapshot.child("phone").getValue().toString();
+
+                        if(k != 0){break;}
+                        for(DataSnapshot kid : snapshot.child("packages").getChildren()){
 //                        String full ="סוג מוצר: "+kid.child("product").getValue().toString()+"\n"+"מוצא: "+ kid.child("citySrc").getValue().toString()+" "+kid.child("streetSrc").getValue().toString()
 //                                +"\n"+"יעד: "+ kid.child("cityDst").getValue().toString();
-                        if(getIntent().getStringExtra("id_").equals(kid.child("pacID").getValue().toString()))
-                        {
-                            k = 1;
-                            kid.getRef().removeValue();
+                            if(getIntent().getStringExtra("id_").equals(kid.child("pacID").getValue().toString()))
+                            {
+                                k = 1;
+                                kid.getRef().removeValue();
 
-                            break;
+                                break;
+                            }
                         }
-                    }
 
+                    }
                 }
+                catch (Exception e){
+                    Toast.makeText(Confirmation.this , "ctch",Toast.LENGTH_LONG).show();
+
+                    e.printStackTrace();
+                }
+
 
             }
 
