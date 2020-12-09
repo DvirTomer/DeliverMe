@@ -97,7 +97,7 @@ public class Delivery_Person extends AppCompatActivity {
 //                Toast.makeText(Delivery_Person.this,"clicked"+parent.getItemAtPosition(position).toString(), LENGTH_SHORT).show();
                 selected =""+ parent.getItemAtPosition(position).toString();
 //                String val = hash_id.get(full);
-                Toast.makeText(Delivery_Person.this,"clicked"+selected, LENGTH_SHORT).show();
+                Toast.makeText(Delivery_Person.this,"חבילה נבחרה!", LENGTH_SHORT).show();
                 view.setSelected(true);
             }
         });
@@ -110,7 +110,7 @@ public class Delivery_Person extends AppCompatActivity {
                     Toast.makeText(Delivery_Person.this,"עליך לבחור חבילה לשליחה!", LENGTH_SHORT).show();
                 }
                 else{
-                    Toast.makeText(Delivery_Person.this,"clicked "+selected, LENGTH_SHORT).show();
+//                    Toast.makeText(Delivery_Person.this,"חבילה נבחרה", LENGTH_SHORT).show();
                    choose_package();
                 }
 

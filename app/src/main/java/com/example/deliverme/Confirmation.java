@@ -17,6 +17,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.net.Uri;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -30,9 +32,9 @@ import static android.widget.Toast.LENGTH_SHORT;
 public class Confirmation extends AppCompatActivity {
     TextView text;
     Button send_mail;
-        String num , msg ;
+    String num, msg;
     String phone = "";
-
+    String x;
 
 
     @Override
@@ -41,56 +43,51 @@ public class Confirmation extends AppCompatActivity {
         setContentView(R.layout.activity_confirmation);
 
 
-
-
         num = "+972526664887";
 //        msg="tomer king";
 
         /////
         String temp2 = getIntent().getStringExtra("temp");
-        Toast.makeText(Confirmation.this,temp2, LENGTH_SHORT).show();
+//        Toast.makeText(Confirmation.this,temp2, LENGTH_SHORT).show();
         text = (TextView) findViewById(R.id.confim_id);
-        text.setText(" הריני מאשר שחבילה "+temp2+ "   תישלח ותגיע בשלמותה ליעדה " + "\n לשליחה לאישור הלקוח, לחץ אישור") ;
+        text.setText("                  בקשה לאישור חבילה" + "\n\n\n" + "הריני מאשר שחבילה- " + "\n" + temp2 + "\n" + "תישלח ותגיע בשלמותה ליעדה " + "\n\n\n\nלשליחה לאישור הלקוח, שלח הודעה");
         send_mail = (Button) findViewById(R.id.ok_id);
         send_mail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 //                sending();
-            if (Build.VERSION.SDK_INT>=Build.VERSION_CODES.M){
-                if(checkSelfPermission(Manifest.permission.SEND_SMS) == PackageManager.PERMISSION_GRANTED){
-                    sending();
-                }else{
-                    requestPermissions(new String[]{Manifest.permission.SEND_SMS},1);
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                    if (checkSelfPermission(Manifest.permission.SEND_SMS) == PackageManager.PERMISSION_GRANTED) {
+                        sending();
+                    } else {
+                        requestPermissions(new String[]{Manifest.permission.SEND_SMS}, 1);
+                    }
                 }
             }
-            }
         });
-        /////
-
 
     }
-    private void sending(){
+
+    private void sending() {
 
         DatabaseReference db = FirebaseDatabase.getInstance().getReference().child("users");
         db.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-
-                try{
+                try {
                     String y;
                     int k = 0;
                     String pac_id = getIntent().getStringExtra("id_");
-                    String phone = "";
-                    for (DataSnapshot snapshot : dataSnapshot.getChildren()){
-                        phone =  snapshot.child("phone").getValue().toString();
+                    for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                        if (k != 0) {
+                            break;
+                        }
+                        for (DataSnapshot kid : snapshot.child("packages").getChildren()) {
 
-                        if(k != 0){break;}
-                        for(DataSnapshot kid : snapshot.child("packages").getChildren()){
-//                        String full ="סוג מוצר: "+kid.child("product").getValue().toString()+"\n"+"מוצא: "+ kid.child("citySrc").getValue().toString()+" "+kid.child("streetSrc").getValue().toString()
-//                                +"\n"+"יעד: "+ kid.child("cityDst").getValue().toString();
-                            if(getIntent().getStringExtra("id_").equals(kid.child("pacID").getValue().toString()))
-                            {
+                            if (getIntent().getStringExtra("id_").equals(kid.child("pacID").getValue().toString())) {
                                 k = 1;
+                                phone = snapshot.child("phone").getValue().toString();
+
                                 kid.getRef().removeValue();
 
                                 break;
@@ -98,33 +95,54 @@ public class Confirmation extends AppCompatActivity {
                         }
 
                     }
-                }
-                catch (Exception e){
-                    Toast.makeText(Confirmation.this , "ctch",Toast.LENGTH_LONG).show();
-
+                } catch (Exception e) {
+//                    Toast.makeText(Confirmation.this , "ctch",Toast.LENGTH_LONG).show();
                     e.printStackTrace();
                 }
-
-
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-
             }
         });
-        try {
+        /////////////// delivery man phone
+        FirebaseUser take_id = FirebaseAuth.getInstance().getCurrentUser();
+        String userId = take_id.getUid();
+        DatabaseReference user = FirebaseDatabase.getInstance().getReference("users").child(userId);
+        user.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                x = dataSnapshot.child("phone").getValue().toString();
+                String sener_phone= "0"+x.substring(1);
 
-            SmsManager sms = SmsManager.getDefault();
-            sms.sendTextMessage(num , null ,getIntent().getStringExtra("temp") ,null , null);
-            Toast.makeText(this , getIntent().getStringExtra("id_"),Toast.LENGTH_LONG).show();
-        }catch (Exception e){
-            e.printStackTrace();
-            Toast.makeText(this , "Does not sent",Toast.LENGTH_LONG).show();
 
-        }
-        Intent intent=new Intent(this, MainActivity.class);
+
+                try {
+                    String per2 = "+972"+phone.substring(1);
+                    ///the sms will be sent to per2
+                    SmsManager sms = SmsManager.getDefault();
+
+                    sms.sendTextMessage(per2+ "", null,"שליח מ-DeliverME מעוניין למסור את החבילה שלך! טלפון:" +sener_phone, null, null);
+
+
+
+                    Toast.makeText(Confirmation.this, "הודעה נשלחה בהצלחה", Toast.LENGTH_LONG).show();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    Toast.makeText(Confirmation.this, "ההודעה נכשלה", Toast.LENGTH_LONG).show();
+                }
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+            }
+        });
+
+
+        Intent intent=new Intent(Confirmation.this, MainActivity.class);
         startActivity(intent);
-    }
 
+
+    }
 }
