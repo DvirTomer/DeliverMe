@@ -4,13 +4,17 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.Manifest;
+import android.app.Dialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.telephony.SmsManager;
 import android.util.Log;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -35,7 +39,8 @@ public class Confirmation extends AppCompatActivity {
     String num, msg;
     String phone = "";
     String x;
-
+    String sender_name = "";
+    int i = 8;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,21 +60,47 @@ public class Confirmation extends AppCompatActivity {
         send_mail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                sending();
+//                dia();
+
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                    if (checkSelfPermission(Manifest.permission.SEND_SMS) == PackageManager.PERMISSION_GRANTED) {
-                        sending();
-                    } else {
-                        requestPermissions(new String[]{Manifest.permission.SEND_SMS}, 1);
-                    }
+                if (checkSelfPermission(Manifest.permission.SEND_SMS) == PackageManager.PERMISSION_GRANTED) {
+                    sending();
+                } else {
+                    requestPermissions(new String[]{Manifest.permission.SEND_SMS}, 1);
                 }
+            }
             }
         });
 
+
+
     }
+private void dia(){
 
+//    CustomDialogClass cdd = new CustomDialogClass(Confirmation.this);
+//    cdd.show();
+
+}
     private void sending() {
+        /////////
+        FirebaseUser take_id=FirebaseAuth.getInstance().getCurrentUser();
 
+        String userId= take_id.getUid();
+
+        DatabaseReference user = FirebaseDatabase.getInstance().getReference("users");
+        DatabaseReference user1 = user.child(userId);
+        DatabaseReference all_name = user1.child("allName");
+        all_name.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                sender_name = dataSnapshot.getValue().toString();
+            }
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+            }
+        });
+
+        /////////
         DatabaseReference db = FirebaseDatabase.getInstance().getReference().child("users");
         db.addValueEventListener(new ValueEventListener() {
             @Override
@@ -88,7 +119,10 @@ public class Confirmation extends AppCompatActivity {
                                 k = 1;
                                 phone = snapshot.child("phone").getValue().toString();
 
-                                kid.getRef().removeValue();
+//                                kid.getRef().removeValue();
+                                kid.child("status").getRef().setValue("ממתין לאישור");
+                                kid.child("sender").getRef().setValue(""+sender_name);
+
 
                                 break;
                             }
@@ -106,9 +140,9 @@ public class Confirmation extends AppCompatActivity {
             }
         });
         /////////////// delivery man phone
-        FirebaseUser take_id = FirebaseAuth.getInstance().getCurrentUser();
-        String userId = take_id.getUid();
-        DatabaseReference user = FirebaseDatabase.getInstance().getReference("users").child(userId);
+         take_id = FirebaseAuth.getInstance().getCurrentUser();
+         userId = take_id.getUid();
+         user = FirebaseDatabase.getInstance().getReference("users").child(userId);
         user.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -146,3 +180,4 @@ public class Confirmation extends AppCompatActivity {
 
     }
 }
+
