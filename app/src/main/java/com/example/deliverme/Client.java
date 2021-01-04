@@ -113,7 +113,7 @@ public class Client extends AppCompatActivity {
                     errorText.setText("אנא בחר/י סוג מוצר");
                     return;
                 }
-                Package pac = new Package(ScitySrc,SstreetSrc,StimeSrc1,StimeSrc2,ScityDst,SstreetDst,StimeDst1,StimeDst2,Snote,Sproduct,pacID,userId,"ממתין למשלוח");
+                Package pac = new Package(ScitySrc,SstreetSrc,StimeSrc1,StimeSrc2,ScityDst,SstreetDst,StimeDst1,StimeDst2,Snote,Sproduct,pacID,userId,"ממתין למשלוח","");
                 dbUserPac.child(pacID).setValue(pac);
 
                 sendTo();
