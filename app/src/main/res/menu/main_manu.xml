@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_home"
+            android:icon="@drawable/home_icon"
+            android:title="דף הבית" />
+
+        <item
+            android:id="@+id/nav_cycle"
+            android:icon="@drawable/home_icon"
+            android:title="משלוחים" />
+
+        <item
+            android:id="@+id/nav_bus"
+            android:icon="@drawable/home_icon"
+            android:title="היסטוריה" />
+
+        <item
+            android:id="@+id/nav_plane"
+            android:icon="@drawable/home_icon"
+            android:title="התנתק" />
+    </group>
+    <group android:checkableBehavior="single">
+        <item android:title="Profile">
+
+            <menu>
+
+                <group android:checkableBehavior="single">
+
+                    <item
+                        android:id="@+id/nav_login"
+                        android:icon="@drawable/home_icon"
+                        android:title="Login" />
+
+                    <item
+                        android:id="@+id/nav_profile"
+                        android:icon="@drawable/home_icon"
+                        android:title="Profile" />
+
+                    <item
+                        android:id="@+id/nav_logout"
+                        android:icon="@drawable/home_icon"
+                        android:title="Logout" />
+                </group>
+            </menu>
+        </item>
+    </group>
+    <item android:title="Communicate">
+
+        <menu>
+
+            <item
+                android:id="@+id/nav_share"
+                android:icon="@drawable/home_icon"
+                android:title="Share" />
+
+            <item
+                android:id="@+id/nav_rate"
+                android:icon="@drawable/home_icon"
+                android:title="Rate Us" />
+        </menu>
+    </item>
+</menu>
