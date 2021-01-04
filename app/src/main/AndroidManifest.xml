@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.deliverme">
-
-    <uses-permission android:name="android.permission.SEND_SMS" />
-
+    <uses-permission android:name="android.permission.SEND_SMS"/>
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -11,11 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.DeliverMe">
-        <activity android:name=".MainActivity2"></activity>
-        <activity android:name=".Delivery_Details" />
-        <activity android:name=".Messages" />
-        <activity android:name=".Admin" />
-        <activity android:name=".Prof" />
+        <activity android:name=".Admin"></activity>
+        <activity android:name=".Prof"></activity>
         <activity android:name=".Delivery_Person" />
         <activity android:name=".Client" />
         <activity android:name=".Login">
