@@ -13,8 +13,9 @@ public class Package {
     String product;
     String pacID;
     String userID;
+    String status;
 
-    public Package(String citySrc, String streetSrc, String dateSrc, String timeSrc, String cityDst, String streetDst, String dateDst, String timeDst, String note, String product, String pacID, String userID) {
+    public Package(String citySrc, String streetSrc, String dateSrc, String timeSrc, String cityDst, String streetDst, String dateDst, String timeDst, String note, String product, String pacID, String userID,String status) {
         this.citySrc = citySrc;
         this.streetSrc = streetSrc;
         this.dateSrc = dateSrc;
@@ -27,6 +28,15 @@ public class Package {
         this.product = product;
         this.pacID=pacID;
         this.userID=userID;
+        this.status=status;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 
     public String getCitySrc() {

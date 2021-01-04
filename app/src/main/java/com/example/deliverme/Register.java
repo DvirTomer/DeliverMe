@@ -91,7 +91,7 @@ public class Register extends AppCompatActivity {
 //                            String id=dbUser.push().getKey();
                             User user=new User(id,allName,email,phone,"0");
                             dbUser.child(id).setValue(user);
-
+                            dbUser= FirebaseDatabase.getInstance().getReference("users").child(id).child("packages");
                             Toast.makeText(Register.this, "User created",Toast.LENGTH_SHORT).show();
                             startActivity(new Intent(getApplicationContext(),MainActivity.class));
                         }
