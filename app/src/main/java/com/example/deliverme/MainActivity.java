@@ -2,18 +2,19 @@ package com.example.deliverme;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 import android.view.Menu;
 import android.view.MenuInflater;
-import android.view.MenuItem;
+import android.widget.Toolbar;
+
+import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -22,11 +23,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import java.util.ArrayList;
-
-import static android.widget.Toast.LENGTH_SHORT;
-
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity{
     Button signout;
     TextView text;
     TextView text_deliver;
@@ -34,13 +31,17 @@ public class MainActivity extends AppCompatActivity {
 
     DatabaseReference all_name;
     String x="";
-
+    DrawerLayout drawerLayouta;
+    NavigationView navigationView;
+    Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+//         drawerLayouta=findViewById(R.id.nav);
+//         navigationView;
 
         signout=(Button)findViewById(R.id.Logout);
         send_btn=(Button)findViewById(R.id.send_delivery);
@@ -105,12 +106,81 @@ public class MainActivity extends AppCompatActivity {
 //            }
 //        });
     }
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.main_manu, menu);
-        return true;
+        @Override
+        public boolean onCreateOptionsMenu(Menu menu) {
+            getMenuInflater().inflate(R.menu.main_menu,menu);
+            return super.onCreateOptionsMenu(menu);
     }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        int id=item.getItemId();
+        if(id==R.id.nav_home)
+        {
+            Intent intent=new Intent(this, MainActivity.class);
+            startActivity(intent);
+            finish();
+            return true;
+        }
+        if(id==R.id.nav_prof)
+        {
+            Intent intent=new Intent(this, Prof.class);
+            startActivity(intent);
+            finish();
+            return true;
+        }
+        if(id==R.id.nav_mess)
+        {
+            Intent intent=new Intent(this, Messages.class);
+            startActivity(intent);
+            finish();
+            return true;
+        }
+        if(id==R.id.nav_deli)
+        {
+            Intent intent=new Intent(this, Delivery_Details.class);
+            startActivity(intent);
+            finish();
+            return true;
+        }
+        if(id==R.id.nav_log)
+        {
+            FirebaseAuth.getInstance().signOut();
+            startActivity(new Intent(getApplicationContext(), Login.class));
+            finish();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+    }
+
+//    @Override
+//    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+//        int id123=item.getItemId();
+//        if(id123==R.id.nav_mess)
+//        {
+//            Intent intent=new Intent(MainActivity.this, Messages.class);
+//            startActivity(intent);
+//            return true;
+//        }
+//        return super.onOptionsItemSelected(item);
+//        switch(item.getItemId())
+//        {
+//            case R.id.nav_home:
+//                Intent intent=new Intent(this,MainActivity.class);
+//                startActivity(intent);
+//                break;
+//            case R.id.nav_log:
+//                FirebaseAuth.getInstance().signOut();
+//                startActivity(new Intent(getApplicationContext(), Login.class));
+//                finish();
+//                break;
+//        }
+//        return true;
+//    }
     public void open_send()
     {
         Intent intent=new Intent(this, Client.class);
@@ -127,5 +197,7 @@ public class MainActivity extends AppCompatActivity {
         Intent intent=new Intent(this, Prof.class);
         startActivity(intent);
     }
+
+
 }
 ///////132
