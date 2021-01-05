@@ -36,37 +36,35 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.498"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/time_src" />
+                app:layout_constraintTop_toBottomOf="@+id/timeButton" />
 
-            <EditText
-                android:id="@+id/time_src"
-                android:layout_width="154dp"
-                android:layout_height="46dp"
-                android:layout_marginTop="5dp"
-                android:ems="10"
-                android:hint="מהשעה-עד השעה"
-                android:inputType="textPersonName"
-                android:textColorHint="#7CB342"
+
+            <Button
+                android:id="@+id/timeButton"
+                style="@style/Widget.AppCompat.Button.Colored"
+                android:layout_width="114dp"
+                android:layout_height="54dp"
+                android:layout_marginStart="24dp"
+                android:text="בחר שעה"
                 app:layout_constraintBottom_toTopOf="@+id/textView5"
-                app:layout_constraintEnd_toStartOf="@+id/date_src"
+                app:layout_constraintEnd_toStartOf="@+id/dateButton"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/street_src" />
 
-            <EditText
-                android:id="@+id/date_src"
-                android:layout_width="154dp"
-                android:layout_height="46dp"
-                android:ems="10"
-                android:hint="תאריך"
-                android:inputType="date"
-                android:textColorHint="#7CB342"
+            <Button
+                android:id="@+id/dateButton"
+                style="@style/Widget.AppCompat.Button.Colored"
+                android:layout_width="114dp"
+                android:layout_height="54dp"
+                android:layout_marginStart="24dp"
+                android:layout_marginBottom="8dp"
+                android:text="בחר תאריך"
                 app:layout_constraintBottom_toTopOf="@+id/textView5"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toEndOf="@+id/time_src"
+                app:layout_constraintStart_toEndOf="@+id/timeButton"
                 app:layout_constraintTop_toBottomOf="@+id/city_src" />
-
 
             <EditText
                 android:id="@+id/street_src"
@@ -77,7 +75,7 @@
                 android:hint="רחוב/בית"
                 android:inputType="textPersonName"
                 android:textColorHint="#7CB342"
-                app:layout_constraintBottom_toTopOf="@+id/time_src"
+                app:layout_constraintBottom_toTopOf="@+id/timeButton"
                 app:layout_constraintEnd_toStartOf="@+id/city_src"
                 app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toStartOf="parent"
@@ -92,38 +90,37 @@
                 android:hint="עיר"
                 android:inputType="textPersonName"
                 android:textColorHint="#7CB342"
-                app:layout_constraintBottom_toTopOf="@+id/date_src"
+                app:layout_constraintBottom_toTopOf="@+id/dateButton"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toEndOf="@+id/street_src"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <EditText
-                android:id="@+id/time_dst"
-                android:layout_width="154dp"
-                android:layout_height="46dp"
-                android:ems="10"
-                android:hint="מהשעה-עד השעה"
-                android:inputType="textPersonName"
-                android:textColorHint="#7CB342"
+            <Button
+                android:id="@+id/timeButtonD"
+                style="@style/Widget.AppCompat.Button.Colored"
+                android:layout_width="114dp"
+                android:layout_height="54dp"
+
+                android:layout_marginStart="24dp"
+                android:text="בחר שעה"
                 app:layout_constraintBottom_toTopOf="@+id/spinner"
-                app:layout_constraintEnd_toStartOf="@+id/date_dst"
+                app:layout_constraintEnd_toStartOf="@+id/dateButtonD"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/street_dst" />
 
-            <EditText
-                android:id="@+id/date_dst"
-                android:layout_width="154dp"
-                android:layout_height="46dp"
-                android:ems="10"
-                android:hint="תאריך"
-                android:inputType="date"
-                android:textColorHint="#7CB342"
+            <Button
+                android:id="@+id/dateButtonD"
+                style="@style/Widget.AppCompat.Button.Colored"
+                android:layout_width="114dp"
+                android:layout_height="54dp"
+                android:layout_marginStart="24dp"
+                android:text="בחר תאריך"
                 app:layout_constraintBottom_toTopOf="@+id/spinner"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toEndOf="@+id/time_dst"
+                app:layout_constraintStart_toEndOf="@+id/timeButtonD"
                 app:layout_constraintTop_toBottomOf="@+id/city_dst" />
 
             <Button
@@ -138,7 +135,7 @@
                 android:shadowRadius="5"
                 android:text="שלח"
                 android:textAlignment="center"
-                android:textColor="#FB8C00"
+                android:textColor="#FFFFFF"
                 android:textColorHighlight="#FFFFFF"
                 android:textColorLink="#FFFFFF"
                 android:textSize="18sp"
@@ -158,7 +155,7 @@
                 android:hint="רחוב/בית"
                 android:inputType="textPersonName"
                 android:textColorHint="#7CB342"
-                app:layout_constraintBottom_toTopOf="@+id/time_dst"
+                app:layout_constraintBottom_toTopOf="@+id/timeButtonD"
                 app:layout_constraintEnd_toStartOf="@+id/city_dst"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
@@ -172,7 +169,7 @@
                 android:hint="עיר"
                 android:inputType="textPersonName"
                 android:textColorHint="#7CB342"
-                app:layout_constraintBottom_toTopOf="@+id/date_dst"
+                app:layout_constraintBottom_toTopOf="@+id/dateButtonD"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toEndOf="@+id/street_dst"
@@ -186,7 +183,7 @@
                 android:entries="@array/all_product"
                 app:layout_constraintBottom_toTopOf="@+id/notes"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/time_dst" />
+                app:layout_constraintTop_toBottomOf="@+id/timeButtonD" />
 
             <EditText
                 android:id="@+id/notes"
@@ -208,7 +205,7 @@
                 android:layout_width="162dp"
                 android:layout_height="42dp"
                 android:layout_marginStart="124dp"
-                android:layout_marginTop="15dp"
+                android:layout_marginTop="36dp"
                 android:text="כתובת מקור"
                 android:textColor="#FFB300"
                 android:textSize="30sp"
@@ -230,6 +227,20 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             app:layout_constraintGuide_begin="-8dp" />
+
+
+
+        ///
+
+
+
+
+
+
+       \
+        ///
+
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
