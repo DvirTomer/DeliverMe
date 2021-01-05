@@ -8,6 +8,7 @@ import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.drawable.Drawable;
 import android.media.Image;
 import android.net.Uri;
 import android.os.Build;
@@ -28,6 +29,9 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import com.squareup.picasso.Picasso;
+
+import java.io.InputStream;
+import java.net.URL;
 import java.security.Permission;
 
 import dagger.multibindings.ElementsIntoSet;
@@ -41,7 +45,9 @@ public class Prof extends AppCompatActivity {
     ImageView image;
     ImageView picture;
     DatabaseReference dbUserpicture;
-
+    String x2 ="";
+    String url = "https://firebasestorage.googleapis.com/v0/b/deliverme-fd8f8.appspot.com/o/uploads?alt=media&token=2e89bbd8-79eb-4edc-97c4-4622ab4cae5d";
+    private DatabaseReference mDatabaseRef;
     Uri imageURI;
     private static final int IMAGE_PICK_CODE = 1000;
     private static final int PERMISSION_CODE = 1001;
@@ -56,9 +62,10 @@ public class Prof extends AppCompatActivity {
         title = (TextView)findViewById(R.id.titlename);
         picture = (ImageView)findViewById(R.id.upload_img);
         image = (ImageView)findViewById(R.id.upload_img);
+        mDatabaseRef = FirebaseDatabase.getInstance().getReference("uploads");
 
         FirebaseUser take_id= FirebaseAuth.getInstance().getCurrentUser();
-
+        LoadImageFromWebOperations(url);
         String userId= take_id.getUid();
 
         DatabaseReference user = FirebaseDatabase.getInstance().getReference("users");
@@ -67,32 +74,37 @@ public class Prof extends AppCompatActivity {
         DatabaseReference allemail = user1.child("mail");
         DatabaseReference allphone = user1.child("phone");
         DatabaseReference allpicture = user1.child("picture");
-        dbUserpicture= FirebaseDatabase.getInstance().getReference("users").child(userId).child("picture");
 
 
-        image.setOnClickListener(new View.OnClickListener() {
-           @Override
-          public void onClick(View v) {
-            if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                if(checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE)== PackageManager.PERMISSION_DENIED){
-                    String[] permissions = {Manifest.permission.READ_EXTERNAL_STORAGE};
-                    requestPermissions(permissions, PERMISSION_CODE);
-                }
-                else{
-                    pickImageFromGallery();
+        ///////
+        DatabaseReference db = FirebaseDatabase.getInstance().getReference().child("users").child(userId).child("picture");
+        db.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                try {
+
+                    for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                       x2 = snapshot.child("imageUrl").getValue().toString();
+                        Picasso.get().load(x2).into(image);
+                        break;
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
                 }
             }
-               pickImageFromGallery();
-                                     }
-                                 }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+            }
+        });
+        //////
 
-        );
         allname.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 String  x = dataSnapshot.getValue().toString();
                 all_name.setText(x);
                 title.setText(x);
+
             }
             @Override
             public void onCancelled(DatabaseError databaseError) {
@@ -118,53 +130,32 @@ public class Prof extends AppCompatActivity {
             public void onCancelled(DatabaseError databaseError) {
             }
         });
-        allpicture.addValueEventListener(new ValueEventListener() {
+        image.setOnClickListener(new View.OnClickListener(){
             @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                String  x = dataSnapshot.getValue().toString();
-//                Picasso.get().load(x).into(picture);
-            }
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-            }
-        });
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(),Storage.class));
+
+                String uploadId = mDatabaseRef.push().getKey();
+
+            }});
+
     }
 
-    private void pickImageFromGallery() {
-        Intent intent = new Intent(Intent.ACTION_PICK);
-        intent.setType("image/*");
-        startActivityForResult(intent, IMAGE_PICK_CODE);
-    }
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
 
-        switch (requestCode){
-            case PERMISSION_CODE:{
-                if (grantResults.length > 0 && grantResults[0]== PackageManager.PERMISSION_GRANTED){
-                    pickImageFromGallery();
-                }
-                else
-                    Toast.makeText(this, "Perimission denied", Toast.LENGTH_SHORT).show();
-            }
-        }
-    }
-
-//    @SuppressLint("MissingSuperCall")
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (resultCode == RESULT_OK && requestCode == IMAGE_PICK_CODE) {
-            imageURI = data.getData();
-//            image.setImageURI(data.getData());
-            Picasso.get().load(imageURI).into(image);
-            dbUserpicture.setValue(imageURI.toString());
-        }
-    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.main_menu, menu);
         return true;
+    }
+    public static Drawable LoadImageFromWebOperations(String url) {
+        try {
+            InputStream is = (InputStream) new URL(url).getContent();
+            Drawable d = Drawable.createFromStream(is, "src name");
+            return d;
+        } catch (Exception e) {
+            return null;
+        }
     }
 }
