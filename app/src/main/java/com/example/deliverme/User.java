@@ -10,10 +10,11 @@ public class User {
     String mail;
     String admin;
     double rate;
+    int count_rate;
 //    ArrayList <Package> clientPac;
 //    ArrayList <Package> messengerPac;
 
-    public User(String id, String allName, String mail, String phone, String admin,double rate)
+    public User(String id, String allName, String mail, String phone, String admin,double rate,int count_rate)
     {
         this.id=id;
         this.allName=allName;
@@ -21,8 +22,17 @@ public class User {
         this.phone=phone;
         this.admin=admin;
         this.rate=rate;
+        this.count_rate=count_rate;
 //        clientPac=new ArrayList<Package>();
 //        messengerPac=new ArrayList<Package>();
+    }
+
+    public int getCount_rate() {
+        return count_rate;
+    }
+
+    public void setCount_rate(int count_rate) {
+        this.count_rate = count_rate;
     }
 
     public double getRate() {

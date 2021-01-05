@@ -15,7 +15,8 @@ public class Package {
     String userID;
     String status;
     String sender;
-    public Package(String citySrc, String streetSrc, String dateSrc, String timeSrc, String cityDst, String streetDst, String dateDst, String timeDst, String note, String product, String pacID, String userID,String status,String sender) {
+    String sender_id;
+    public Package(String citySrc, String streetSrc, String dateSrc, String timeSrc, String cityDst, String streetDst, String dateDst, String timeDst, String note, String product, String pacID, String userID,String status,String sender,String sender_id) {
         this.citySrc = citySrc;
         this.streetSrc = streetSrc;
         this.dateSrc = dateSrc;
@@ -30,6 +31,7 @@ public class Package {
         this.userID=userID;
         this.status=status;
         this.sender=sender;
+        this.sender_id=sender_id;
     }
 
     public String getStatus() {
