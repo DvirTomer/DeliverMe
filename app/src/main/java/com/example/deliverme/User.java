@@ -9,20 +9,28 @@ public class User {
     String phone;
     String mail;
     String admin;
-
+    double rate;
 //    ArrayList <Package> clientPac;
 //    ArrayList <Package> messengerPac;
 
-    public User(String id, String allName, String mail, String phone, String admin)
+    public User(String id, String allName, String mail, String phone, String admin,double rate)
     {
         this.id=id;
         this.allName=allName;
         this.mail=mail;
         this.phone=phone;
         this.admin=admin;
-
+        this.rate=rate;
 //        clientPac=new ArrayList<Package>();
 //        messengerPac=new ArrayList<Package>();
+    }
+
+    public double getRate() {
+        return rate;
+    }
+
+    public void setRate(double rate) {
+        this.rate = rate;
     }
 
     public void setAdmin(String admin) {
