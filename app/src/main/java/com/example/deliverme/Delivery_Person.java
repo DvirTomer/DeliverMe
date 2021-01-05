@@ -63,24 +63,25 @@ public class Delivery_Person extends AppCompatActivity {
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()){
                     for(DataSnapshot kid : snapshot.child("packages").getChildren()){
 
-                        try {
-                            String full ="סוג מוצר: "+kid.child("product").getValue().toString()+"\n"+"מוצא: "+ kid.child("citySrc").getValue().toString()+" "+kid.child("streetSrc").getValue().toString()
-                                    +"\n"+"יעד: "+ kid.child("cityDst").getValue().toString()
-                                    +" "+kid.child("streetDst").getValue().toString()+"\n"+"זמני משלוח: "+"\n"+"תאריך: "+kid.child("dateDst").getValue().toString()+"\n"
-                                    +"שעות משלוח: "+kid.child("timeDst").getValue().toString();
+                        if(kid.child("status").getValue().toString().equals("ממתין למשלוח")) {
 
-                            String ID = kid.child("pacID").getValue().toString();
+                            try {
+                                String full = "סוג מוצר: " + kid.child("product").getValue().toString() + "\n" + "מוצא: " + kid.child("citySrc").getValue().toString() + " " + kid.child("streetSrc").getValue().toString()
+                                        + "\n" + "יעד: " + kid.child("cityDst").getValue().toString()
+                                        + " " + kid.child("streetDst").getValue().toString() + "\n" + "זמני משלוח: " + "\n" + "תאריך: " + kid.child("dateDst").getValue().toString() + "\n"
+                                        + "שעות משלוח: " + kid.child("timeDst").getValue().toString();
+
+                                String ID = kid.child("pacID").getValue().toString();
 //                        y = kid.child("note").getValue().toString();
 //                        String x = kid.child("product").getValue().toString();
-                            hash_id.put(full,ID);
+                                hash_id.put(full, ID);
 //                        String ans = "    "+hash_id.get(full);
-                            arraylist.add(full);
-                        }
-                        catch(Exception e){
-                            e.printStackTrace();
-                        }
+                                arraylist.add(full);
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
 
-
+                        }
                     }
                 }
                 adapter.notifyDataSetChanged();
