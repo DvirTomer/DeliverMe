@@ -34,6 +34,14 @@ public class Package {
         this.sender_id=sender_id;
     }
 
+    public String getSender_id() {
+        return sender_id;
+    }
+
+    public void setSender_id(String sender_id) {
+        this.sender_id = sender_id;
+    }
+
     public String getStatus() {
         return status;
     }
