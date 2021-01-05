@@ -16,7 +16,9 @@ public class Package {
     String status;
     String sender;
     String sender_id;
-    public Package(String citySrc, String streetSrc, String dateSrc, String timeSrc, String cityDst, String streetDst, String dateDst, String timeDst, String note, String product, String pacID, String userID,String status,String sender,String sender_id) {
+    int price;
+
+    public Package(String citySrc, String streetSrc, String dateSrc, String timeSrc, String cityDst, String streetDst, String dateDst, String timeDst, String note, String product, String pacID, String userID,String status,String sender,String sender_id,int price) {
         this.citySrc = citySrc;
         this.streetSrc = streetSrc;
         this.dateSrc = dateSrc;
@@ -32,6 +34,7 @@ public class Package {
         this.status=status;
         this.sender=sender;
         this.sender_id=sender_id;
+        this.price=price;
     }
 
     public String getSender_id() {
@@ -98,6 +101,10 @@ public class Package {
         return product;
     }
 
+    public int getprice() {
+        return price;
+    }
+
     public void setCitySrc(String citySrc) {
         this.citySrc = citySrc;
     }
@@ -152,5 +159,9 @@ public class Package {
 
     public void setProduct(String product) {
         this.product = product;
+    }
+
+    public void setprice(int price) {
+        this.price = price;
     }
 }

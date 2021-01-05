@@ -137,7 +137,8 @@ public class Client extends AppCompatActivity {
 //                    errorText.setText("אנא בחר/י סוג מוצר");
 //                    return;
 //                }
-                Package pac = new Package(ScitySrc,SstreetSrc,StimeSrc1,StimeSrc2,ScityDst,SstreetDst,StimeDst1,StimeDst2,Snote,Sproduct,pacID,userId,"ממתין למשלוח","","");
+                int price = cal_price(ScitySrc,ScityDst,Sproduct);
+                Package pac = new Package(ScitySrc,SstreetSrc,StimeSrc1,StimeSrc2,ScityDst,SstreetDst,StimeDst1,StimeDst2,Snote,Sproduct,pacID,userId,"ממתין למשלוח","","",price);
                 dbUserPac.child(pacID).setValue(pac);
 
                 sendTo();
@@ -328,6 +329,62 @@ public class Client extends AppCompatActivity {
 
         timePickerDialog.show();
 
+    }
+    public int cal_price(String x, String y, String product) {
+        int price = 0;
+        boolean big = false;
+        boolean middle = false;
+        boolean little = false;
+        if (product.equals("ארון"))
+        {
+            big = true;
+        }
+        if (product.equals("תיק גב"))
+        {
+            little = true;
+        }
+        if (product.equals("בגדים"))
+        {
+            little = true;
+        }
+        if (product == "כיסא")
+        {
+            middle = true;
+        }
+        if (product.equals("מחשב"))
+        {
+            middle = true;
+        }
+        if (product.equals("מטען"))
+        {
+            little = true;
+        }
+        if (product.equals("מיקרוגל"))
+        {
+            big = false;
+        }
+        if (product.equals("פרחים"))
+        {
+            little = true;
+        }
+        if (product.equals("תמונה"))
+        {
+            middle = true;
+        }
+
+        if (big == true)
+        {
+            price = 50;
+        }
+        if (middle == true)
+        {
+            price = 35;
+        }
+        if (little == true)
+        {
+            price = 20;
+        }
+        return price;
     }
 
 }
