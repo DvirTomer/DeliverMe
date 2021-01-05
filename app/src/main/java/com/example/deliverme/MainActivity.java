@@ -9,10 +9,12 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.widget.Toolbar;
+
 
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
@@ -22,11 +24,13 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.squareup.picasso.Picasso;
 
 public class MainActivity extends AppCompatActivity{
     Button signout;
     TextView text;
     TextView text_deliver;
+    ImageView image;
    private Button send_btn, take_btn;
 
     DatabaseReference all_name;
@@ -34,7 +38,8 @@ public class MainActivity extends AppCompatActivity{
     DrawerLayout drawerLayouta;
     NavigationView navigationView;
     Toolbar toolbar;
-
+    String x2 ="";
+    String url = "https://firebasestorage.googleapis.com/v0/b/deliverme-fd8f8.appspot.com/o/uploads?alt=media&token=2e89bbd8-79eb-4edc-97c4-4622ab4cae5d";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -47,17 +52,39 @@ public class MainActivity extends AppCompatActivity{
         send_btn=(Button)findViewById(R.id.send_delivery);
         take_btn =(Button)findViewById(R.id.take_delivery);
         text_deliver = (TextView) findViewById(R.id.textGrid);
-
+        image = (ImageView)findViewById(R.id.profile_image);
         ////**** this part for get name from user
         text = (TextView)findViewById(R.id.userName_);
 
+        Picasso.get().load(url).into(image);
         FirebaseUser take_id=FirebaseAuth.getInstance().getCurrentUser();
 
         String userId= take_id.getUid();
 
+
         DatabaseReference user = FirebaseDatabase.getInstance().getReference("users");
         DatabaseReference user1 = user.child(userId);
         DatabaseReference all_name = user1.child("allName");
+
+        DatabaseReference db = FirebaseDatabase.getInstance().getReference().child("users").child(userId).child("picture");
+        db.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                try {
+
+                    for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                        x2 = snapshot.child("imageUrl").getValue().toString();
+//                        Picasso.get().load(x2).into(image);
+                        break;
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+            }
+        });
 
         all_name.addValueEventListener(new ValueEventListener() {
             @Override

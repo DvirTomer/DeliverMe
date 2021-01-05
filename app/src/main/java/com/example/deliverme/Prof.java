@@ -46,7 +46,7 @@ public class Prof extends AppCompatActivity {
     ImageView picture;
     DatabaseReference dbUserpicture;
     String x2 ="";
-    String url = "https://firebasestorage.googleapis.com/v0/b/deliverme-fd8f8.appspot.com/o/uploads?alt=media&token=2e89bbd8-79eb-4edc-97c4-4622ab4cae5d";
+//    String url = "https://firebasestorage.googleapis.com/v0/b/deliverme-fd8f8.appspot.com/o/uploads?alt=media&token=2e89bbd8-79eb-4edc-97c4-4622ab4cae5d";
     private DatabaseReference mDatabaseRef;
     Uri imageURI;
     private static final int IMAGE_PICK_CODE = 1000;
@@ -65,7 +65,6 @@ public class Prof extends AppCompatActivity {
         mDatabaseRef = FirebaseDatabase.getInstance().getReference("uploads");
 
         FirebaseUser take_id= FirebaseAuth.getInstance().getCurrentUser();
-        LoadImageFromWebOperations(url);
         String userId= take_id.getUid();
 
         DatabaseReference user = FirebaseDatabase.getInstance().getReference("users");
