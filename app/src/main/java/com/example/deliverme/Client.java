@@ -100,43 +100,43 @@ public class Client extends AppCompatActivity {
 
 //                Toast.makeText(Client.this, StimeSrc2, Toast.LENGTH_LONG).show();
 
-                if (TextUtils.isEmpty(ScitySrc)) {
-                    citySrc.setError("אנא בחר/י עיר מקור");
-                    return;
-                }
-                if (TextUtils.isEmpty(SstreetSrc)) {
-                    streetSrc.setError("אנא בחר/י רחוב מקור");
-                    return;
-                }
-                if (TextUtils.isEmpty(StimeSrc1)) {
-                    dateSrc.setError("אנא בחר/י תאריך מקור");
-                    return;
-                }
-                if (TextUtils.isEmpty(StimeSrc2)) {
-                    timeSrc.setError("אנא בחר/י שעת מקור");
-                    return;
-                }
-                if (TextUtils.isEmpty(ScityDst)) {
-                    cityDst.setError("אנא בחר/י עיר יעד");
-                    return;
-                }
-                if (TextUtils.isEmpty(SstreetDst)) {
-                    streetDst.setError("אנא בחר/י רחוב יעד");
-                    return;
-                }
-                if (TextUtils.isEmpty(StimeDst1)) {
-                    dateDst.setError("אנא בחר/י תאריך יעד");
-                    return;
-                }
-                if (TextUtils.isEmpty(StimeDst2)) {
-                    timeDst.setError("אנא בחר/י שעת יעד");
-                    return;
-                }
-                if (Sproduct.equals("סוג מוצר...")) {
-                    TextView errorText =(TextView)product.getSelectedView();
-                    errorText.setText("אנא בחר/י סוג מוצר");
-                    return;
-                }
+//                if (TextUtils.isEmpty(ScitySrc)) {
+//                    citySrc.setError("אנא בחר/י עיר מקור");
+//                    return;
+//                }
+//                if (TextUtils.isEmpty(SstreetSrc)) {
+//                    streetSrc.setError("אנא בחר/י רחוב מקור");
+//                    return;
+//                }
+//                if (TextUtils.isEmpty(StimeSrc1)) {
+//                    dateSrc.setError("אנא בחר/י תאריך מקור");
+//                    return;
+//                }
+//                if (TextUtils.isEmpty(StimeSrc2)) {
+//                    timeSrc.setError("אנא בחר/י שעת מקור");
+//                    return;
+//                }
+//                if (TextUtils.isEmpty(ScityDst)) {
+//                    cityDst.setError("אנא בחר/י עיר יעד");
+//                    return;
+//                }
+//                if (TextUtils.isEmpty(SstreetDst)) {
+//                    streetDst.setError("אנא בחר/י רחוב יעד");
+//                    return;
+//                }
+//                if (TextUtils.isEmpty(StimeDst1)) {
+//                    dateDst.setError("אנא בחר/י תאריך יעד");
+//                    return;
+//                }
+//                if (TextUtils.isEmpty(StimeDst2)) {
+//                    timeDst.setError("אנא בחר/י שעת יעד");
+//                    return;
+//                }
+//                if (Sproduct.equals("סוג מוצר...")) {
+//                    TextView errorText =(TextView)product.getSelectedView();
+//                    errorText.setText("אנא בחר/י סוג מוצר");
+//                    return;
+//                }
                 Package pac = new Package(ScitySrc,SstreetSrc,StimeSrc1,StimeSrc2,ScityDst,SstreetDst,StimeDst1,StimeDst2,Snote,Sproduct,pacID,userId,"ממתין למשלוח","","");
                 dbUserPac.child(pacID).setValue(pac);
 

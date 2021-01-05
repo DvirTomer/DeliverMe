@@ -152,9 +152,13 @@ public class Delivery_Details extends AppCompatActivity {
         startActivity(intent);
     }
     public void choose_package2_rate(){
-        Intent intent = new Intent(this, rate_sender.class);
+        Intent intent = new Intent(this, Rate_Sender.class);
         intent.putExtra("temp", selected);
         intent.putExtra("id_", hash_id.get(selected));
+//        intent.putExtra("id_sender",);
+
+
+
         hash_id.remove(selected);
 
         startActivity(intent);

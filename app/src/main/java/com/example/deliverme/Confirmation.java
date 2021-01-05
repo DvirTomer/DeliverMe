@@ -29,6 +29,7 @@ public class Confirmation extends AppCompatActivity {
     String phone = "";
     String x;
     String sender_name = "";
+    String sender_id ="";
     int i = 8;
 
     @Override
@@ -78,11 +79,14 @@ private void dia(){
 
         DatabaseReference user = FirebaseDatabase.getInstance().getReference("users");
         DatabaseReference user1 = user.child(userId);
-        DatabaseReference all_name = user1.child("allName");
-        all_name.addValueEventListener(new ValueEventListener() {
+//        DatabaseReference all_name = user1.child("allName");
+        user1.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                sender_name = dataSnapshot.getValue().toString();
+                sender_name = dataSnapshot.child("allName").getValue().toString();
+                sender_id = dataSnapshot.child("id").getValue().toString();
+                Toast.makeText(Confirmation.this , sender_id+"",Toast.LENGTH_LONG).show();
+
             }
             @Override
             public void onCancelled(DatabaseError databaseError) {
@@ -111,6 +115,9 @@ private void dia(){
 //                                kid.getRef().removeValue();
                                 kid.child("status").getRef().setValue("ממתין לאישור");
                                 kid.child("sender").getRef().setValue(""+sender_name);
+                                ///////sender_id
+                                kid.child("sender_id").getRef().setValue(sender_id);
+
 
 
                                 break;

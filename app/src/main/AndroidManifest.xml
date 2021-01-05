@@ -27,7 +27,7 @@
         <activity android:name=".Register" />
         <activity android:name=".MainActivity" />
         <activity android:name=".Confirmation" />
-        <activity android:name=".rate_sender" />
+        <activity android:name=".Rate_Sender" />
 
 
     </application>
