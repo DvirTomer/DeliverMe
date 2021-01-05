@@ -13,6 +13,7 @@
         <activity android:name=".Prof"></activity>
         <activity android:name=".Messages"></activity>
         <activity android:name=".Delivery_Details"></activity>
+        <activity android:name=".Storage"></activity>
         <activity android:name=".Delivery_Person" />
         <activity android:name=".Client" />
         <activity android:name=".Confirmation2" />
