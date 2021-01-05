@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity{
     NavigationView navigationView;
     Toolbar toolbar;
     String x2 ="";
-    String url = "https://firebasestorage.googleapis.com/v0/b/deliverme-fd8f8.appspot.com/o/uploads?alt=media&token=2e89bbd8-79eb-4edc-97c4-4622ab4cae5d";
+//    String url = "https://firebasestorage.googleapis.com/v0/b/deliverme-fd8f8.appspot.com/o/uploads?alt=media&token=2e89bbd8-79eb-4edc-97c4-4622ab4cae5d";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -56,7 +56,7 @@ public class MainActivity extends AppCompatActivity{
         ////**** this part for get name from user
         text = (TextView)findViewById(R.id.userName_);
 
-        Picasso.get().load(url).into(image);
+
         FirebaseUser take_id=FirebaseAuth.getInstance().getCurrentUser();
 
         String userId= take_id.getUid();
@@ -74,7 +74,7 @@ public class MainActivity extends AppCompatActivity{
 
                     for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                         x2 = snapshot.child("imageUrl").getValue().toString();
-//                        Picasso.get().load(x2).into(image);
+                        Picasso.get().load(x2).into(image);
                         break;
                     }
                 } catch (Exception e) {
