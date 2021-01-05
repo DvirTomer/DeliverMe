@@ -15,7 +15,9 @@ import android.os.Build;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.TextView;
 import android.view.View;
 import android.widget.Toast;
@@ -44,6 +46,7 @@ public class Prof extends AppCompatActivity {
     TextView title;
     ImageView image;
     ImageView picture;
+    RatingBar rating;
     DatabaseReference dbUserpicture;
     String x2 ="";
 //    String url = "https://firebasestorage.googleapis.com/v0/b/deliverme-fd8f8.appspot.com/o/uploads?alt=media&token=2e89bbd8-79eb-4edc-97c4-4622ab4cae5d";
@@ -62,7 +65,9 @@ public class Prof extends AppCompatActivity {
         title = (TextView)findViewById(R.id.titlename);
         picture = (ImageView)findViewById(R.id.upload_img);
         image = (ImageView)findViewById(R.id.upload_img);
+        rating = (RatingBar)findViewById(R.id.rating);
         mDatabaseRef = FirebaseDatabase.getInstance().getReference("uploads");
+
 
         FirebaseUser take_id= FirebaseAuth.getInstance().getCurrentUser();
         String userId= take_id.getUid();
@@ -73,8 +78,10 @@ public class Prof extends AppCompatActivity {
         DatabaseReference allemail = user1.child("mail");
         DatabaseReference allphone = user1.child("phone");
         DatabaseReference allpicture = user1.child("picture");
+        DatabaseReference allrat = user1.child("rate");
 
 
+//        rating.setRating(4);
         ///////
         DatabaseReference db = FirebaseDatabase.getInstance().getReference().child("users").child(userId).child("picture");
         db.addValueEventListener(new ValueEventListener() {
@@ -129,6 +136,18 @@ public class Prof extends AppCompatActivity {
             public void onCancelled(DatabaseError databaseError) {
             }
         });
+        allrat.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                String  x = dataSnapshot.getValue().toString()+"";
+                int r = Integer.parseInt(x);
+                Toast.makeText(Prof.this,x+r, Toast.LENGTH_LONG).show();
+                rating.setRating(r);
+            }
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+            }
+        });
         image.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
@@ -140,7 +159,46 @@ public class Prof extends AppCompatActivity {
 
     }
 
-
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        int id=item.getItemId();
+        if(id==R.id.nav_home)
+        {
+            Intent intent=new Intent(this, MainActivity.class);
+            startActivity(intent);
+            finish();
+            return true;
+        }
+        if(id==R.id.nav_prof)
+        {
+            Intent intent=new Intent(this, Prof.class);
+            startActivity(intent);
+            finish();
+            return true;
+        }
+        if(id==R.id.nav_mess)
+        {
+            Intent intent=new Intent(this, Messages.class);
+            startActivity(intent);
+            finish();
+            return true;
+        }
+        if(id==R.id.nav_deli)
+        {
+            Intent intent=new Intent(this, Delivery_Details.class);
+            startActivity(intent);
+            finish();
+            return true;
+        }
+        if(id==R.id.nav_log)
+        {
+            FirebaseAuth.getInstance().signOut();
+            startActivity(new Intent(getApplicationContext(), Login.class));
+            finish();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
