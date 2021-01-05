@@ -9,6 +9,7 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.media.Image;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.Menu;
@@ -26,6 +27,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import com.squareup.picasso.Picasso;
 import java.security.Permission;
 
 import dagger.multibindings.ElementsIntoSet;
@@ -37,7 +39,10 @@ public class Prof extends AppCompatActivity {
     TextView phone;
     TextView title;
     ImageView image;
+    ImageView picture;
     DatabaseReference dbUserpicture;
+
+    Uri imageURI;
     private static final int IMAGE_PICK_CODE = 1000;
     private static final int PERMISSION_CODE = 1001;
     @Override
@@ -49,7 +54,7 @@ public class Prof extends AppCompatActivity {
         email = (TextView)findViewById(R.id.fullemail);
         phone = (TextView)findViewById(R.id.fullphone);
         title = (TextView)findViewById(R.id.titlename);
-
+        picture = (ImageView)findViewById(R.id.upload_img);
         image = (ImageView)findViewById(R.id.upload_img);
 
         FirebaseUser take_id= FirebaseAuth.getInstance().getCurrentUser();
@@ -61,8 +66,9 @@ public class Prof extends AppCompatActivity {
         DatabaseReference allname = user1.child("allName");
         DatabaseReference allemail = user1.child("mail");
         DatabaseReference allphone = user1.child("phone");
-
+        DatabaseReference allpicture = user1.child("picture");
         dbUserpicture= FirebaseDatabase.getInstance().getReference("users").child(userId).child("picture");
+
 
         image.setOnClickListener(new View.OnClickListener() {
            @Override
@@ -112,6 +118,16 @@ public class Prof extends AppCompatActivity {
             public void onCancelled(DatabaseError databaseError) {
             }
         });
+        allpicture.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                String  x = dataSnapshot.getValue().toString();
+//                Picasso.get().load(x).into(picture);
+            }
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+            }
+        });
     }
 
     private void pickImageFromGallery() {
@@ -138,8 +154,10 @@ public class Prof extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == RESULT_OK && requestCode == IMAGE_PICK_CODE) {
-            image.setImageURI(data.getData());
-//            dbUserpicture.setImageURI(data.getData());
+            imageURI = data.getData();
+//            image.setImageURI(data.getData());
+            Picasso.get().load(imageURI).into(image);
+            dbUserpicture.setValue(imageURI.toString());
         }
     }
 
