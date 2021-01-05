@@ -22,7 +22,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-public class Confirmation extends AppCompatActivity {
+public class Confirmation2 extends AppCompatActivity {
     TextView text;
     Button send_mail;
     String num, msg;
@@ -44,7 +44,7 @@ public class Confirmation extends AppCompatActivity {
         String temp2 = getIntent().getStringExtra("temp");
 //        Toast.makeText(Confirmation.this,temp2, LENGTH_SHORT).show();
         text = (TextView) findViewById(R.id.confim_id);
-        text.setText("                  בקשה לאישור חבילה" + "\n\n\n" + "הריני מאשר שחבילה- " + "\n" + temp2 + "\n" + "תישלח ותגיע בשלמותה ליעדה " + "\n\n\n\nלשליחה לאישור הלקוח, שלח הודעה");
+        text.setText("                  בקשה לאישור שליח" + "\n\n\n" + "הריני מאשר שחבילה- " + "\n" + temp2 + "\n" + "תישלח ותגיע על ידי שליח זה " + "\n\n\n\nלאישור השליח, לחץ ok");
         send_mail = (Button) findViewById(R.id.ok_id);
         send_mail.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -52,24 +52,24 @@ public class Confirmation extends AppCompatActivity {
 //                dia();
 
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                if (checkSelfPermission(Manifest.permission.SEND_SMS) == PackageManager.PERMISSION_GRANTED) {
-                    sending();
-                } else {
-                    requestPermissions(new String[]{Manifest.permission.SEND_SMS}, 1);
+                    if (checkSelfPermission(Manifest.permission.SEND_SMS) == PackageManager.PERMISSION_GRANTED) {
+                        sending();
+                    } else {
+                        requestPermissions(new String[]{Manifest.permission.SEND_SMS}, 1);
+                    }
                 }
-            }
             }
         });
 
 
 
     }
-private void dia(){
+    private void dia(){
 
 //    CustomDialogClass cdd = new CustomDialogClass(Confirmation.this);
 //    cdd.show();
 
-}
+    }
     private void sending() {
         /////////
         FirebaseUser take_id=FirebaseAuth.getInstance().getCurrentUser();
@@ -109,8 +109,8 @@ private void dia(){
                                 phone = snapshot.child("phone").getValue().toString();
 
 //                                kid.getRef().removeValue();
-                                kid.child("status").getRef().setValue("ממתין לאישור");
-                                kid.child("sender").getRef().setValue(""+sender_name);
+                                kid.child("status").getRef().setValue("בדרך");
+//                                kid.child("sender").getRef().setValue(""+sender_name);
 
 
                                 break;
@@ -129,9 +129,9 @@ private void dia(){
             }
         });
         /////////////// delivery man phone
-         take_id = FirebaseAuth.getInstance().getCurrentUser();
-         userId = take_id.getUid();
-         user = FirebaseDatabase.getInstance().getReference("users").child(userId);
+        take_id = FirebaseAuth.getInstance().getCurrentUser();
+        userId = take_id.getUid();
+        user = FirebaseDatabase.getInstance().getReference("users").child(userId);
         user.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -149,10 +149,10 @@ private void dia(){
 
 
 
-                    Toast.makeText(Confirmation.this, "הודעה נשלחה בהצלחה", Toast.LENGTH_LONG).show();
+                    Toast.makeText(Confirmation2.this, "הודעה נשלחה בהצלחה", Toast.LENGTH_LONG).show();
                 } catch (Exception e) {
                     e.printStackTrace();
-                    Toast.makeText(Confirmation.this, "ההודעה נכשלה", Toast.LENGTH_LONG).show();
+                    Toast.makeText(Confirmation2.this, "ההודעה נכשלה", Toast.LENGTH_LONG).show();
                 }
 
             }
@@ -163,7 +163,7 @@ private void dia(){
         });
 
 
-        Intent intent=new Intent(Confirmation.this, MainActivity.class);
+        Intent intent=new Intent(Confirmation2.this, MainActivity.class);
         startActivity(intent);
 
 

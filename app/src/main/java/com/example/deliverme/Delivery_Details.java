@@ -7,11 +7,15 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -20,6 +24,8 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.Hashtable;
+
+import static android.widget.Toast.LENGTH_SHORT;
 
 public class Delivery_Details extends AppCompatActivity {
     ListView listview;
@@ -46,8 +52,13 @@ public class Delivery_Details extends AppCompatActivity {
         //
         confirm = (Button) findViewById(R.id.button22);
         //
+        FirebaseUser take_id=FirebaseAuth.getInstance().getCurrentUser();
 
-        DatabaseReference db = FirebaseDatabase.getInstance().getReference().child("users");
+        String userId= take_id.getUid();
+
+        DatabaseReference db = FirebaseDatabase.getInstance().getReference("users").child(userId);
+
+//        DatabaseReference db = FirebaseDatabase.getInstance().getReference().child("users");
 
 
         db.addValueEventListener(new ValueEventListener() {
@@ -56,14 +67,24 @@ public class Delivery_Details extends AppCompatActivity {
                 arraylist.clear();
                 String y;
                 hash_id.clear();
-                for (DataSnapshot snapshot : dataSnapshot.getChildren()){
-                    for(DataSnapshot kid : snapshot.child("packages").getChildren()){
+//                for (DataSnapshot snapshot : dataSnapshot.getChildren()){
+                    for(DataSnapshot kid : dataSnapshot.child("packages").getChildren()){
 
                         if(!kid.child("status").getValue().toString().equals("ממתין למשלוח")) {
 
                             try {
-                                String full = "סוג מוצר: " + kid.child("product").getValue().toString() + "\n" + "סטטוס: "  +kid.child("status").getValue().toString() + "\n" + "פרטי שליח: "+kid.child("sender").getValue().toString() + "\n"+"לאישור, לחץ כאן";
+                                String full = "סוג מוצר: " + kid.child("product").getValue().toString() + "\n" + "סטטוס: "  +kid.child("status").getValue().toString() + "\n" + "פרטי שליח: "+kid.child("sender").getValue().toString() ;
                                 String ID = kid.child("pacID").getValue().toString();
+                                if(kid.child("status").getValue().toString().equals("ממתין לאישור"))
+                                {
+                                    full+="\n"+"לאישור, לחץ כאן";
+                                }
+                                if(kid.child("status").getValue().toString().equals("בדרך"))
+                                {
+                                    full+="\n"+"בהגעת החבילה ליעדה, לחץ כאן";
+                                }
+
+
 //                        y = kid.child("note").getValue().toString();
 //                        String x = kid.child("product").getValue().toString();
                                 hash_id.put(full, ID);
@@ -75,7 +96,7 @@ public class Delivery_Details extends AppCompatActivity {
 
                         }
                     }
-                }
+//                }
                 adapter.notifyDataSetChanged();
 
             }
@@ -85,19 +106,59 @@ public class Delivery_Details extends AppCompatActivity {
 
             }
         });
+        listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+//                Toast.makeText(Delivery_Person.this,"clicked"+parent.getItemAtPosition(position).toString(), LENGTH_SHORT).show();
+                selected =""+ parent.getItemAtPosition(position).toString();
+//                if(selected.contains("בדרך")){
+//                    Toast.makeText(Delivery_Details.this,"true", LENGTH_SHORT).show();
+//
+//                }else{
+//                    Toast.makeText(Delivery_Details.this,"false", LENGTH_SHORT).show();
+//
+//                }
+
+
+//                String val = hash_id.get(full);
+//                Toast.makeText(Delivery_Details.this,"חבילה נבחרה!", LENGTH_SHORT).show();
+                view.setSelected(true);
+                if((selected=="" || selected==" " || selected.length()<2 || selected==null)|| (!selected.contains("ממתין לאישור") && !selected.contains("בדרך")))
+                {
+                    Toast.makeText(Delivery_Details.this,"עליך לבחור חבילה אשר ממתינה לאישור!", LENGTH_SHORT).show();
+                }
+                else if (selected.contains("בדרך"))
+                {
+                    Toast.makeText(Delivery_Details.this,"חבילה שבדרך נבחרה!", LENGTH_SHORT).show();
+                    choose_package2_rate();
+                }
+                else{
+                    Toast.makeText(Delivery_Details.this,"חבילה נבחרה!", LENGTH_SHORT).show();
+                    choose_package();
+                }
+            }
+        });
+
+
 
     }
 
     public void choose_package(){
-        Intent intent = new Intent(this, Confirmation.class);
+        Intent intent = new Intent(this, Confirmation2.class);
         intent.putExtra("temp", selected);
         intent.putExtra("id_", hash_id.get(selected));
         hash_id.remove(selected);
 
+        startActivity(intent);
+    }
+    public void choose_package2_rate(){
+        Intent intent = new Intent(this, rate_sender.class);
+        intent.putExtra("temp", selected);
+        intent.putExtra("id_", hash_id.get(selected));
+        hash_id.remove(selected);
 
         startActivity(intent);
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
