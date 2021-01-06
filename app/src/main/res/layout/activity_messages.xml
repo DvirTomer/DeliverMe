@@ -12,26 +12,6 @@
         android:layout_height="629dp"
         android:padding="10dp" />
 
-    <Button
-        android:id="@+id/button224"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="65dp"
-        android:layout_marginLeft="60dp"
-        android:layout_marginBottom="23dp"
-        android:text="אשר חבילה"
-        android:layout_gravity="center_horizontal"
-        android:background="@drawable/button"
-        android:shadowColor="#120205"
-        android:shadowDx="0"
-        android:shadowDy="0"
-        android:shadowRadius="5"
-        android:textAlignment="center"
-        android:textColor="#FFFFFF"
-        android:textSize="18sp"
-        app:backgroundTint="@null" />
+
 
 </RelativeLayout>

@@ -29,7 +29,6 @@ import static android.widget.Toast.LENGTH_SHORT;
 
 public class Messages extends AppCompatActivity {
     ListView listview;
-    Button confirm;
     String selected = "";
     String pack;
     String uid="";
@@ -51,7 +50,6 @@ public class Messages extends AppCompatActivity {
 
 
         //
-        confirm = (Button) findViewById(R.id.button224);
         //
         FirebaseUser take_id=FirebaseAuth.getInstance().getCurrentUser();
 
@@ -136,11 +134,11 @@ public class Messages extends AppCompatActivity {
                 else if (selected.contains("בדרך"))
                 {
                     Toast.makeText(Messages.this,"חבילה שבדרך נבחרה!", LENGTH_SHORT).show();
-                    choose_package2_rate();
+//                    choose_package2_rate();
                 }
                 else{
                     Toast.makeText(Messages.this,"חבילה נבחרה!", LENGTH_SHORT).show();
-                    choose_package();
+//                    choose_package();
                 }
             }
         });
