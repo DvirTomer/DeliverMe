@@ -347,7 +347,7 @@ public class Client extends AppCompatActivity {
         {
             little = true;
         }
-        if (product == "כיסא")
+        if (product.equals("כיסא"))
         {
             middle = true;
         }
