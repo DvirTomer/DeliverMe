@@ -24,7 +24,7 @@
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
             android:text="DeliverMe"
-            android:textColor="@android:color/white"
+            android:textColor="@color/followers"
             android:textSize="34sp" />
 
         <de.hdodenhof.circleimageview.CircleImageView
@@ -42,7 +42,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
-            android:shadowColor="#040505"
+            android:textColor="#040A0B"
             android:text="hallo"
             android:textSize="25sp"
             android:textStyle="italic" />
@@ -97,7 +97,7 @@
                     android:shadowRadius="5"
                     android:text="take delivery"
                     android:textAlignment="center"
-                    android:textColor="#FFFFFF"
+                    android:textColor="#040A0B"
                     android:textSize="18sp"
                     app:backgroundTint="@null" />
 
@@ -140,7 +140,7 @@
                     android:shadowRadius="5"
                     android:text="send delivery"
                     android:textAlignment="center"
-                    android:textColor="#FFFFFF"
+                    android:textColor="#040A0B"
                     android:textSize="18sp"
                     app:backgroundTint="@null" />
 
@@ -166,7 +166,7 @@
         android:shadowRadius="5"
         android:text="Logout"
         android:textAlignment="center"
-        android:textColor="#FFFFFF"
+        android:textColor="#040A0B"
         android:textSize="18sp"
         app:backgroundTint="@null" />
 
