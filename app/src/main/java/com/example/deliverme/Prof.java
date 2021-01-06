@@ -77,7 +77,6 @@ public class Prof extends AppCompatActivity {
         DatabaseReference allname = user1.child("allName");
         DatabaseReference allemail = user1.child("mail");
         DatabaseReference allphone = user1.child("phone");
-        DatabaseReference allpicture = user1.child("picture");
         DatabaseReference allrat = user1.child("rate");
 
 

@@ -11,10 +11,11 @@ public class User {
     String admin;
     double rate;
     int count_rate;
+    String picture;
 //    ArrayList <Package> clientPac;
 //    ArrayList <Package> messengerPac;
 
-    public User(String id, String allName, String mail, String phone, String admin,double rate,int count_rate)
+    public User(String id, String allName, String mail, String phone, String admin,double rate,int count_rate,String picture)
     {
         this.id=id;
         this.allName=allName;
@@ -23,6 +24,7 @@ public class User {
         this.admin=admin;
         this.rate=rate;
         this.count_rate=count_rate;
+        this.picture = picture;
 //        clientPac=new ArrayList<Package>();
 //        messengerPac=new ArrayList<Package>();
     }
@@ -66,13 +68,21 @@ public class User {
     public String getMail() {
         return mail;
     }
+    public String getPicture() {
+        return picture;
+    }
 
     public void setId(String id) {
         this.id = id;
     }
 
+
     public void setAllName(String allName) {
         this.allName = allName;
+    }
+
+    public void setPicture(String allName) {
+        this.picture = picture;
     }
 
     public void setPhone(String phone) {
