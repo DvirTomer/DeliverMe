@@ -6,7 +6,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/img_for_baclround"
+    android:background="@drawable/tensix_014"
     android:orientation="vertical"
     android:weightSum="10"
     tools:context=".MainActivity">
@@ -34,8 +34,7 @@
             android:layout_below="@+id/textGrid"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="13dp"
-            android:src="@drawable/profile"
- />
+            android:src="@drawable/profile" />
 
         <TextView
             android:id="@+id/userName_"
@@ -43,18 +42,21 @@
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
-            android:text="hallo"/>
+            android:shadowColor="#040505"
+            android:text="hallo"
+            android:textSize="25sp"
+            android:textStyle="italic" />
 
     </RelativeLayout>
 
     <GridLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
         android:layout_weight="4.5"
         android:alignmentMode="alignMargins"
         android:columnCount="2"
         android:columnOrderPreserved="false"
-        android:layout_marginTop="40dp"
         android:padding="0dp"
         android:rowCount="1">
 
@@ -86,19 +88,18 @@
 
                 <Button
                     android:id="@+id/take_delivery"
-                    android:text="take delivery"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    app:backgroundTint="@null"
                     android:background="@drawable/button"
                     android:shadowColor="#120205"
                     android:shadowDx="0"
                     android:shadowDy="0"
                     android:shadowRadius="5"
+                    android:text="take delivery"
                     android:textAlignment="center"
                     android:textColor="#FFFFFF"
                     android:textSize="18sp"
-                  />
+                    app:backgroundTint="@null" />
 
             </LinearLayout>
         </androidx.cardview.widget.CardView>
@@ -130,18 +131,18 @@
 
                 <Button
                     android:id="@+id/send_delivery"
-                    android:text="send delivery"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    app:backgroundTint="@null"
                     android:background="@drawable/button"
                     android:shadowColor="#120205"
                     android:shadowDx="0"
                     android:shadowDy="0"
                     android:shadowRadius="5"
+                    android:text="send delivery"
                     android:textAlignment="center"
                     android:textColor="#FFFFFF"
-                    android:textSize="18sp" />
+                    android:textSize="18sp"
+                    app:backgroundTint="@null" />
 
             </LinearLayout>
         </androidx.cardview.widget.CardView>
@@ -155,7 +156,6 @@
 
     <Button
         android:id="@+id/Logout"
-        android:text="Logout"
         android:layout_width="157dp"
         android:layout_height="46dp"
         android:layout_gravity="center_horizontal"
@@ -164,6 +164,7 @@
         android:shadowDx="0"
         android:shadowDy="0"
         android:shadowRadius="5"
+        android:text="Logout"
         android:textAlignment="center"
         android:textColor="#FFFFFF"
         android:textSize="18sp"
