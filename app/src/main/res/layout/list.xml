@@ -5,7 +5,7 @@
     android:padding="70dp"
     android:textSize="25dp"
     android:textStyle="bold"
-    android:background="@drawable/my_selector"
+    android:background="@drawable/back"
 
     >
 
