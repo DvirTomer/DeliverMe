@@ -34,6 +34,8 @@ public class Confirmation2 extends AppCompatActivity {
     int i = 8;
     String price ="";
     String temp2="";
+    boolean flag = true;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -162,7 +164,10 @@ public class Confirmation2 extends AppCompatActivity {
                                 phone = snapshot.child("phone").getValue().toString();
 
 //                                kid.getRef().removeValue();
-                                kid.child("status").getRef().setValue("בדרך");
+                                if(flag==true) {
+                                    kid.child("status").getRef().setValue("בדרך");
+                                    flag = false;
+                                }
 //                                kid.child("sender").getRef().setValue(""+sender_name);
 
 

@@ -31,6 +31,7 @@ public class Confirmation extends AppCompatActivity {
     String sender_name = "";
     String sender_id ="";
     int i = 8;
+    boolean flag = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -112,7 +113,14 @@ public class Confirmation extends AppCompatActivity {
                                 phone = snapshot.child("phone").getValue().toString();
 
 //                                kid.getRef().removeValue();
-                                kid.child("status").getRef().setValue("ממתין לאישור");
+                                if(flag == true) {
+                                    kid.child("status").getRef().setValue("ממתין לאישור");
+                                    flag = false;
+                                }
+
+
+
+
                                 kid.child("sender").getRef().setValue(""+sender_name);
                                 ///////sender_id
                                 kid.child("sender_id").getRef().setValue(sender_id);

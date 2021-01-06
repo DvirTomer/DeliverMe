@@ -90,7 +90,7 @@ public class MainActivity extends AppCompatActivity{
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                  x = dataSnapshot.getValue().toString();
-                text.setText("Hallo "+x);
+                text.setText("Hi "+x+"!");
             }
             @Override
             public void onCancelled(DatabaseError databaseError) {
