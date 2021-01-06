@@ -7,75 +7,34 @@
             android:icon="@drawable/home_icon"
             app:showAsAction="always"
             android:title="action_notification">
-        <group android:checkableBehavior="single">
-                <item
-                    android:id="@+id/nav_home"
-                    android:icon="@drawable/home_icon"
-                    android:title="ראשי"
-                    app:showAsAction="never"></item>
-                <item
-                    android:id="@+id/nav_mess"
-                    android:icon="@drawable/home_icon"
-                    android:title="הודעות"
-                    app:showAsAction="never"></item>
-        <item
-            android:id="@+id/nav_prof"
-            android:icon="@drawable/home_icon"
-            android:title="פרופיל"
-            app:showAsAction="never"></item>
+                <group android:checkableBehavior="single">
+                        <item
+                            android:id="@+id/nav_home"
+                            android:icon="@drawable/home_icon"
+                            android:title="ראשי"
+                            app:showAsAction="never"></item>
+                        <item
+                            android:id="@+id/nav_mess"
+                            android:icon="@drawable/home_icon"
+                            android:title="משלוחים שביצעתי"
+                            app:showAsAction="never"></item>
+                        <item
+                            android:id="@+id/nav_prof"
+                            android:icon="@drawable/home_icon"
+                            android:title="פרופיל"
+                            app:showAsAction="never"></item>
 
-        <item
-            android:id="@+id/nav_deli"
-            android:icon="@drawable/home_icon"
-            android:title="משלוחים"
-            app:showAsAction="never"></item>
-        <item
-            android:id="@+id/nav_log"
-            android:icon="@drawable/home_icon"
-            android:title="התנתק"
-            app:showAsAction="never"></item>
-        </group>
+                        <item
+                            android:id="@+id/nav_deli"
+                            android:icon="@drawable/home_icon"
+                            android:title="מעקב משלוחים"
+                            app:showAsAction="never"></item>
+                        <item
+                            android:id="@+id/nav_log"
+                            android:icon="@drawable/home_icon"
+                            android:title="התנתק"
+                            app:showAsAction="never"></item>
+                </group>
         </item>
 
 </menu>
-    <!--    </group>-->
-    <!--    <group android:checkableBehavior="single">-->
-    <!--        <item android:title="Profile">-->
-
-    <!--            <menu>-->
-
-    <!--                <group android:checkableBehavior="single">-->
-
-    <!--                    <item-->
-    <!--                        android:id="@+id/nav_login"-->
-    <!--                        android:icon="@drawable/home_icon"-->
-    <!--                        android:title="Login" />-->
-
-    <!--                    <item-->
-    <!--                        android:id="@+id/nav_profile"-->
-    <!--                        android:icon="@drawable/home_icon"-->
-    <!--                        android:title="Profile" />-->
-
-    <!--                    <item-->
-    <!--                        android:id="@+id/nav_logout"-->
-    <!--                        android:icon="@drawable/home_icon"-->
-    <!--                        android:title="Logout" />-->
-    <!--                </group>-->
-    <!--            </menu>-->
-    <!--        </item>-->
-    <!--    </group>-->
-    <!--    <item android:title="Communicate">-->
-
-    <!--        <menu>-->
-
-    <!--            <item-->
-    <!--                android:id="@+id/nav_share"-->
-    <!--                android:icon="@drawable/home_icon"-->
-    <!--                android:title="Share" />-->
-
-    <!--            <item-->
-    <!--                android:id="@+id/nav_rate"-->
-    <!--                android:icon="@drawable/home_icon"-->
-    <!--                android:title="Rate Us" />-->
-    <!--        </menu>-->
-    <!--    </item>-->

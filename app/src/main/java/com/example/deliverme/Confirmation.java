@@ -38,7 +38,6 @@ public class Confirmation extends AppCompatActivity {
         setContentView(R.layout.activity_confirmation);
 
 
-        num = "+972526664887";
 //        msg="tomer king";
 
         /////
@@ -53,24 +52,24 @@ public class Confirmation extends AppCompatActivity {
 //                dia();
 
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                if (checkSelfPermission(Manifest.permission.SEND_SMS) == PackageManager.PERMISSION_GRANTED) {
-                    sending();
-                } else {
-                    requestPermissions(new String[]{Manifest.permission.SEND_SMS}, 1);
+                    if (checkSelfPermission(Manifest.permission.SEND_SMS) == PackageManager.PERMISSION_GRANTED) {
+                        sending();
+                    } else {
+                        requestPermissions(new String[]{Manifest.permission.SEND_SMS}, 1);
+                    }
                 }
-            }
             }
         });
 
 
 
     }
-private void dia(){
+    private void dia(){
 
 //    CustomDialogClass cdd = new CustomDialogClass(Confirmation.this);
 //    cdd.show();
 
-}
+    }
     private void sending() {
         /////////
         FirebaseUser take_id=FirebaseAuth.getInstance().getCurrentUser();
@@ -136,9 +135,9 @@ private void dia(){
             }
         });
         /////////////// delivery man phone
-         take_id = FirebaseAuth.getInstance().getCurrentUser();
-         userId = take_id.getUid();
-         user = FirebaseDatabase.getInstance().getReference("users").child(userId);
+        take_id = FirebaseAuth.getInstance().getCurrentUser();
+        userId = take_id.getUid();
+        user = FirebaseDatabase.getInstance().getReference("users").child(userId);
         user.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {

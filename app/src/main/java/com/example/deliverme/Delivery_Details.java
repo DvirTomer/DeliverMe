@@ -33,6 +33,7 @@ public class Delivery_Details extends AppCompatActivity {
     String selected = "";
     String pack;
     String uid="";
+
     Hashtable<String,String> hash_id = new Hashtable<String, String>();
 
     @Override
@@ -67,35 +68,40 @@ public class Delivery_Details extends AppCompatActivity {
                 arraylist.clear();
                 String y;
                 hash_id.clear();
+
+                String rate = dataSnapshot.child("rate").getValue().toString();
+                if(rate.length()>3){
+                    rate=rate.substring(0,3);
+                }
 //                for (DataSnapshot snapshot : dataSnapshot.getChildren()){
-                    for(DataSnapshot kid : dataSnapshot.child("packages").getChildren()){
+                for(DataSnapshot kid : dataSnapshot.child("packages").getChildren()){
 
-                        if(!kid.child("status").getValue().toString().equals("ממתין למשלוח")) {
+                    if(!kid.child("status").getValue().toString().equals("ממתין למשלוח")) {
 
-                            try {
-                                String full = "סוג מוצר: " + kid.child("product").getValue().toString() + "\n" + "סטטוס: "  +kid.child("status").getValue().toString() + "\n" + "פרטי שליח: "+kid.child("sender").getValue().toString() ;
-                                String ID = kid.child("pacID").getValue().toString();
-                                if(kid.child("status").getValue().toString().equals("ממתין לאישור"))
-                                {
-                                    full+="\n"+"לאישור, לחץ כאן";
-                                }
-                                if(kid.child("status").getValue().toString().equals("בדרך"))
-                                {
-                                    full+="\n"+"בהגעת החבילה ליעדה, לחץ כאן";
-                                }
+                        try {
+                            String full = "סוג מוצר: " + kid.child("product").getValue().toString() + "\n" + "סטטוס: "  +kid.child("status").getValue().toString() + "\n" + "שם שליח: "+kid.child("sender").getValue().toString()+"\n"+"דירוג: " +rate   ;
+                            String ID = kid.child("pacID").getValue().toString();
+                            if(kid.child("status").getValue().toString().equals("ממתין לאישור"))
+                            {
+                                full+="\n"+"לאישור, לחץ כאן";
+                            }
+                            if(kid.child("status").getValue().toString().equals("בדרך"))
+                            {
+                                full+="\n"+"בהגעת החבילה ליעדה, לחץ כאן";
+                            }
 
 
 //                        y = kid.child("note").getValue().toString();
 //                        String x = kid.child("product").getValue().toString();
-                                hash_id.put(full, ID);
+                            hash_id.put(full, ID);
 //                        String ans = "    "+hash_id.get(full);
-                                arraylist.add(full);
-                            } catch (Exception e) {
-                                e.printStackTrace();
-                            }
-
+                            arraylist.add(full);
+                        } catch (Exception e) {
+                            e.printStackTrace();
                         }
+
                     }
+                }
 //                }
                 adapter.notifyDataSetChanged();
 

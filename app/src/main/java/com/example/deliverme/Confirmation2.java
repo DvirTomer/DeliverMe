@@ -28,24 +28,64 @@ public class Confirmation2 extends AppCompatActivity {
     String num, msg;
     String phone = "";
     String x;
-    String sender_name = "";
+    String client_phone = "";
+    String sender_phone = "";
+    String sender_id = "";
     int i = 8;
+    String price ="";
+    String temp2="";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_confirmation);
+        setContentView(R.layout.activity_confirmation2);
 
 
-        num = "+972526664887";
 //        msg="tomer king";
 
         /////
-        String temp2 = getIntent().getStringExtra("temp");
+        temp2 = getIntent().getStringExtra("temp");
+        String pacid= getIntent().getStringExtra("id_");
 //        Toast.makeText(Confirmation.this,temp2, LENGTH_SHORT).show();
-        text = (TextView) findViewById(R.id.confim_id);
-        text.setText("                  בקשה לאישור שליח" + "\n\n\n" + "הריני מאשר שחבילה- " + "\n" + temp2 + "\n" + "תישלח ותגיע על ידי שליח זה " + "\n\n\n\nלאישור השליח, לחץ ok");
-        send_mail = (Button) findViewById(R.id.ok_id);
+        text = (TextView) findViewById(R.id.confim_id2);
+        temp2 = temp2.substring(0,temp2.length()-15);
+
+
+        ////
+        FirebaseUser take_id=FirebaseAuth.getInstance().getCurrentUser();
+
+        String userId= take_id.getUid();
+
+        DatabaseReference db = FirebaseDatabase.getInstance().getReference("users").child(userId);
+
+        db.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                for(DataSnapshot kid : dataSnapshot.child("packages").getChildren()){
+
+                    if(kid.child("pacID").getValue().toString().equals(pacid)) {
+//                        Toast.makeText(Confirmation2.this , "in if",Toast.LENGTH_LONG).show();
+                        sender_id = kid.child("sender_id").getValue().toString();
+
+                        price = kid.child("price").getValue().toString();
+//                        Toast.makeText(Confirmation2.this , price+"i",Toast.LENGTH_LONG).show();
+                        text.setText("                  בקשה לאישור שליח"+ "\n\n\n" + "הריני מאשר שחבילה- " + "\n" + temp2 + "\n" + "תישלח על ידי שליח זה " + "\n\n\nלאישור השליח, לחץ ok"
+                                + "\n"+"מחיר משלוח: "+price);
+
+                    }
+
+                }
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+        ////
+
+
+        send_mail = (Button) findViewById(R.id.ok_id2);
         send_mail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -78,17 +118,30 @@ public class Confirmation2 extends AppCompatActivity {
 
         DatabaseReference user = FirebaseDatabase.getInstance().getReference("users");
         DatabaseReference user1 = user.child(userId);
-        DatabaseReference all_name = user1.child("allName");
+        DatabaseReference all_name = user1.child("phone");
         all_name.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                sender_name = dataSnapshot.getValue().toString();
+                client_phone = dataSnapshot.getValue().toString();
             }
             @Override
             public void onCancelled(DatabaseError databaseError) {
             }
         });
 
+
+        user = FirebaseDatabase.getInstance().getReference("users").child(sender_id).child("phone");
+        user.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                sender_phone = dataSnapshot.getValue().toString();
+//                Toast.makeText(Confirmation2.this , client_phone+"iiiii"+sender_phone,Toast.LENGTH_LONG).show();
+
+            }
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+            }
+        });
         /////////
         DatabaseReference db = FirebaseDatabase.getInstance().getReference().child("users");
         db.addValueEventListener(new ValueEventListener() {
@@ -141,11 +194,12 @@ public class Confirmation2 extends AppCompatActivity {
 
 
                 try {
+                    String sen = "+972"+ sender_phone.substring(1);
                     String per2 = "+972"+phone.substring(1);
                     ///the sms will be sent to per2
                     SmsManager sms = SmsManager.getDefault();
 
-                    sms.sendTextMessage(per2+ "", null,"שליח מ-DeliverME מעוניין למסור את החבילה שלך! טלפון:" +sener_phone, null, null);
+                    sms.sendTextMessage(sen+ "", null,"הלקוח אישר את המשלוח שלך! טלפון:" +phone, null, null);
 
 
 

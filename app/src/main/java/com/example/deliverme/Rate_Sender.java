@@ -1,5 +1,6 @@
 package com.example.deliverme;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -133,8 +134,11 @@ public class Rate_Sender extends AppCompatActivity {
 
 
 
+                Intent intent=new Intent(Rate_Sender.this, MainActivity.class);
+                startActivity(intent);
 
             }
+
         });
 
 
