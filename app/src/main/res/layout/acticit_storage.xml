@@ -9,9 +9,18 @@
 
     <Button
         android:id="@+id/button_choose_image"
-        android:layout_width="wrap_content"
+        android:layout_width="152dp"
         android:layout_height="wrap_content"
-        android:text="Choose file" />
+        android:background="@drawable/button"
+        android:shadowColor="#120205"
+        android:shadowDx="0"
+        android:shadowDy="0"
+        android:shadowRadius="5"
+        android:text="Choose file"
+        android:textAlignment="center"
+        android:textColor="#120B0B"
+        android:textSize="18sp"
+        app:backgroundTint="@null" />
 
     <EditText
         android:id="@+id/edit_text_file_name"
@@ -40,11 +49,21 @@
 
     <Button
         android:id="@+id/button_upload"
-        android:layout_width="wrap_content"
+        android:layout_width="133dp"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:text="Upload" />
+        android:layout_marginBottom="35dp"
+        android:background="@drawable/button"
+        android:shadowColor="#120205"
+        android:shadowDx="0"
+        android:shadowDy="0"
+        android:shadowRadius="5"
+        android:text="Upload"
+        android:textAlignment="center"
+        android:textColor="#130E0E"
+        android:textSize="18sp"
+        app:backgroundTint="@null" />
 
     <TextView
         android:id="@+id/text_view_show_uploads"
