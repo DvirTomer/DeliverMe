@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="preloaded_fonts" translatable="false">
+        <item>@font/aguafina_script</item>
+        <item>@font/alfa_slab_one</item>
+        <item>@font/annie_use_your_telescope</item>
+        <item>@font/calligraffitti</item>
+        <item>@font/codystar_light</item>
+        <item>@font/faster_one</item>
+        <item>@font/old_standard_tt</item>
+        <item>@font/the_girl_next_door</item>
+        <item>@font/trade_winds</item>
+    </array>
+</resources>
