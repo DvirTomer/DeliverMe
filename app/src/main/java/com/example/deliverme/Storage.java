@@ -67,7 +67,7 @@ public class Storage extends AppCompatActivity {
         FirebaseUser take_id= FirebaseAuth.getInstance().getCurrentUser();
         String userId= take_id.getUid();
         dbUserpicture= FirebaseDatabase.getInstance().getReference("users").child(userId).child("picture");
-        mStorageRef = FirebaseStorage.getInstance().getReference("uploads");
+        mStorageRef = FirebaseStorage.getInstance().getReference("uploads"+userId);
         mDatabaseRef = FirebaseDatabase.getInstance().getReference("users").child(userId).child("picture");
 
         mButtonChooseImage.setOnClickListener(new View.OnClickListener() {
