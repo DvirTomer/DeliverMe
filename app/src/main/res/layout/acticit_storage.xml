@@ -18,7 +18,7 @@
         android:shadowRadius="5"
         android:text="Choose file"
         android:textAlignment="center"
-        android:textColor="#FFFFFF"
+        android:textColor="#120B0B"
         android:textSize="18sp"
         app:backgroundTint="@null" />
 
@@ -53,7 +53,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="16dp"
+        android:layout_marginBottom="35dp"
         android:background="@drawable/button"
         android:shadowColor="#120205"
         android:shadowDx="0"
@@ -61,7 +61,7 @@
         android:shadowRadius="5"
         android:text="Upload"
         android:textAlignment="center"
-        android:textColor="#FFFFFF"
+        android:textColor="#130E0E"
         android:textSize="18sp"
         app:backgroundTint="@null" />
 
