@@ -91,11 +91,13 @@ public class Prof extends AppCompatActivity {
                     for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                        x2 = snapshot.child("imageUrl").getValue().toString();
                         Picasso.get().load(x2).into(image);
+
                         break;
                     }
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
+
             }
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
@@ -194,6 +196,7 @@ public class Prof extends AppCompatActivity {
             FirebaseAuth.getInstance().signOut();
             startActivity(new Intent(getApplicationContext(), Login.class));
             finish();
+
             return true;
         }
         return super.onOptionsItemSelected(item);

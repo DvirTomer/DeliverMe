@@ -34,6 +34,8 @@ public class Rate_Sender extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rate_sender);
+        CustomDialogClass cdd = new CustomDialogClass(Rate_Sender.this);
+        cdd.show();
         ratingBar = findViewById(R.id.ratingBar);
         submit = findViewById(R.id.button3);
 

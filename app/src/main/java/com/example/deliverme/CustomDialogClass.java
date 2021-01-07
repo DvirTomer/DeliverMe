@@ -43,7 +43,7 @@ public class CustomDialogClass extends Dialog implements
             case R.id.btn_yes:
                 x = 1;
 
-                c.finish();
+//                c.finish();
                 break;
             case R.id.btn_no:
                 x = 0;
