@@ -23,6 +23,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
+            android:fontFamily="@font/faster_one"
             android:text="DeliverMe"
             android:textColor="@color/followers"
             android:textSize="34sp" />
