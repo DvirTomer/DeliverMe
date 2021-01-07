@@ -56,6 +56,7 @@ public class Rate_Sender extends AppCompatActivity {
                             c = Integer.parseInt(count_rates);
                             flag = true;
 
+//                            int g = c + 1;
                             int g = c + 1;
                             c = g;
                             Toast.makeText(Rate_Sender.this, g + "x", Toast.LENGTH_LONG).show();

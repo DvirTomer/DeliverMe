@@ -33,8 +33,8 @@ public class Delivery_Details extends AppCompatActivity {
     String selected = "";
     String pack;
     String uid="";
-
     Hashtable<String,String> hash_id = new Hashtable<String, String>();
+    String full ="";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,13 +73,17 @@ public class Delivery_Details extends AppCompatActivity {
                 if(rate.length()>3){
                     rate=rate.substring(0,3);
                 }
+
+
+
 //                for (DataSnapshot snapshot : dataSnapshot.getChildren()){
                 for(DataSnapshot kid : dataSnapshot.child("packages").getChildren()){
 
                     if(!kid.child("status").getValue().toString().equals("ממתין למשלוח")) {
 
                         try {
-                            String full = "סוג מוצר: " + kid.child("product").getValue().toString() + "\n" + "סטטוס: "  +kid.child("status").getValue().toString() + "\n" + "שם שליח: "+kid.child("sender").getValue().toString()+"\n"+"דירוג: " +rate   ;
+
+                             full = "סוג מוצר: " + kid.child("product").getValue().toString() + "\n" + "סטטוס: "  +kid.child("status").getValue().toString() + "\n" + "שם שליח: "+kid.child("sender").getValue().toString()+"\n"+"דירוג: " +rate   ;
                             String ID = kid.child("pacID").getValue().toString();
                             if(kid.child("status").getValue().toString().equals("ממתין לאישור"))
                             {

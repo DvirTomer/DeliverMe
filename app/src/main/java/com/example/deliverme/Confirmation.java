@@ -85,7 +85,7 @@ public class Confirmation extends AppCompatActivity {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 sender_name = dataSnapshot.child("allName").getValue().toString();
                 sender_id = dataSnapshot.child("id").getValue().toString();
-                Toast.makeText(Confirmation.this , sender_id+"",Toast.LENGTH_LONG).show();
+//                Toast.makeText(Confirmation.this , sender_id+"",Toast.LENGTH_LONG).show();
 
             }
             @Override
