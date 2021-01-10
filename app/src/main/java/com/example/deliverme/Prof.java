@@ -1,17 +1,11 @@
 package com.example.deliverme;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.Manifest;
-import android.annotation.SuppressLint;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.graphics.drawable.Drawable;
-import android.media.Image;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -34,9 +28,6 @@ import com.squareup.picasso.Picasso;
 
 import java.io.InputStream;
 import java.net.URL;
-import java.security.Permission;
-
-import dagger.multibindings.ElementsIntoSet;
 
 public class Prof extends AppCompatActivity {
 
@@ -179,7 +170,7 @@ public class Prof extends AppCompatActivity {
         }
         if(id==R.id.nav_mess)
         {
-            Intent intent=new Intent(this, Messages.class);
+            Intent intent=new Intent(this, Delivery_Done.class);
             startActivity(intent);
             finish();
             return true;

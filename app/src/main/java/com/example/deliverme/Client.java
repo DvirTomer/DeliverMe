@@ -5,15 +5,14 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Button;
-import android.text.TextUtils;
 import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -98,40 +97,40 @@ public class Client extends AppCompatActivity {
                 String Snote = note.getText().toString().trim();
                 String Sproduct=product.getSelectedItem().toString();
 
-//                Toast.makeText(Client.this, StimeSrc2, Toast.LENGTH_LONG).show();
+                Toast.makeText(Client.this, StimeSrc2, Toast.LENGTH_LONG).show();
 
-//                if (TextUtils.isEmpty(ScitySrc)) {
-//                    citySrc.setError("אנא בחר/י עיר מקור");
-//                    return;
-//                }
-//                if (TextUtils.isEmpty(SstreetSrc)) {
-//                    streetSrc.setError("אנא בחר/י רחוב מקור");
-//                    return;
-//                }
-//                if (TextUtils.isEmpty(StimeSrc1)) {
-//                    dateSrc.setError("אנא בחר/י תאריך מקור");
-//                    return;
-//                }
-//                if (TextUtils.isEmpty(StimeSrc2)) {
-//                    timeSrc.setError("אנא בחר/י שעת מקור");
-//                    return;
-//                }
-//                if (TextUtils.isEmpty(ScityDst)) {
-//                    cityDst.setError("אנא בחר/י עיר יעד");
-//                    return;
-//                }
-//                if (TextUtils.isEmpty(SstreetDst)) {
-//                    streetDst.setError("אנא בחר/י רחוב יעד");
-//                    return;
-//                }
-//                if (TextUtils.isEmpty(StimeDst1)) {
-//                    dateDst.setError("אנא בחר/י תאריך יעד");
-//                    return;
-//                }
-//                if (TextUtils.isEmpty(StimeDst2)) {
-//                    timeDst.setError("אנא בחר/י שעת יעד");
-//                    return;
-//                }
+                if (TextUtils.isEmpty(ScitySrc)) {
+                    citySrc.setError("אנא בחר/י עיר מקור");
+                    return;
+                }
+                if (TextUtils.isEmpty(SstreetSrc)) {
+                    streetSrc.setError("אנא בחר/י רחוב מקור");
+                    return;
+                }
+                if (TextUtils.isEmpty(StimeSrc1)) {
+                    dateSrc.setError("אנא בחר/י תאריך מקור");
+                    return;
+                }
+                if (TextUtils.isEmpty(StimeSrc2)) {
+                    timeSrc.setError("אנא בחר/י שעת מקור");
+                    return;
+                }
+                if (TextUtils.isEmpty(ScityDst)) {
+                    cityDst.setError("אנא בחר/י עיר יעד");
+                    return;
+                }
+                if (TextUtils.isEmpty(SstreetDst)) {
+                    streetDst.setError("אנא בחר/י רחוב יעד");
+                    return;
+                }
+                if (TextUtils.isEmpty(StimeDst1)) {
+                    dateDst.setError("אנא בחר/י תאריך יעד");
+                    return;
+                }
+                if (TextUtils.isEmpty(StimeDst2)) {
+                    timeDst.setError("אנא בחר/י שעת יעד");
+                    return;
+                }
 //                if (Sproduct.equals("סוג מוצר...")) {
 //                    TextView errorText =(TextView)product.getSelectedView();
 //                    errorText.setText("אנא בחר/י סוג מוצר");
@@ -199,7 +198,7 @@ public class Client extends AppCompatActivity {
         }
         if(id==R.id.nav_mess)
         {
-            Intent intent=new Intent(this, Messages.class);
+            Intent intent=new Intent(this, Delivery_Done.class);
             startActivity(intent);
             finish();
             return true;

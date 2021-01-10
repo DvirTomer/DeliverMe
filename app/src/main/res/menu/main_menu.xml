@@ -14,14 +14,15 @@
                             android:title="ראשי"
                             app:showAsAction="never"></item>
                         <item
-                            android:id="@+id/nav_mess"
-                            android:icon="@drawable/home_icon"
-                            android:title="משלוחים שביצעתי"
-                            app:showAsAction="never"></item>
-                        <item
                             android:id="@+id/nav_prof"
                             android:icon="@drawable/home_icon"
                             android:title="פרופיל"
+                            app:showAsAction="never"></item>
+
+                        <item
+                            android:id="@+id/nav_mess"
+                            android:icon="@drawable/home_icon"
+                            android:title="משלוחים שביצעתי"
                             app:showAsAction="never"></item>
 
                         <item

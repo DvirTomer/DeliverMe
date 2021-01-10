@@ -12,7 +12,6 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.view.Menu;
-import android.view.MenuInflater;
 import android.widget.Toolbar;
 
 
@@ -158,7 +157,7 @@ public class MainActivity extends AppCompatActivity{
         }
         if(id==R.id.nav_mess)
         {
-            Intent intent=new Intent(this, Messages.class);
+            Intent intent=new Intent(this, Delivery_Done.class);
             startActivity(intent);
             finish();
             return true;

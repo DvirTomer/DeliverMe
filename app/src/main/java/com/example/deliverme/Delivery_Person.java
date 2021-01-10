@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -13,6 +14,7 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
@@ -125,6 +127,50 @@ public class Delivery_Person extends AppCompatActivity {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.main_menu, menu);
         return true;
+    }
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        int id=item.getItemId();
+        if(id==R.id.nav_home)
+        {
+            Intent intent=new Intent(this, MainActivity.class);
+            startActivity(intent);
+            finish();
+            return true;
+        }
+        if(id==R.id.nav_prof)
+        {
+            Intent intent=new Intent(this, Prof.class);
+            startActivity(intent);
+            finish();
+            return true;
+        }
+        if(id==R.id.nav_mess)
+        {
+            Intent intent=new Intent(this, Delivery_Done.class);
+            startActivity(intent);
+            finish();
+            return true;
+        }
+        if(id==R.id.nav_deli)
+        {
+            Intent intent=new Intent(this, Delivery_Details.class);
+            startActivity(intent);
+            finish();
+            return true;
+        }
+        if(id==R.id.nav_log)
+        {
+            FirebaseAuth.getInstance().signOut();
+            startActivity(new Intent(getApplicationContext(), Login.class));
+            finish();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
     }
     public void choose_package(){
         Intent intent = new Intent(this, Confirmation.class);

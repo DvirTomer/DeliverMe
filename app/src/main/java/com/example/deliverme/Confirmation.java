@@ -9,6 +9,7 @@ import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.telephony.SmsManager;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -181,6 +182,46 @@ public class Confirmation extends AppCompatActivity {
         startActivity(intent);
 
 
+    }
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        int id=item.getItemId();
+        if(id==R.id.nav_home)
+        {
+            Intent intent=new Intent(this, MainActivity.class);
+            startActivity(intent);
+            finish();
+            return true;
+        }
+        if(id==R.id.nav_prof)
+        {
+            Intent intent=new Intent(this, Prof.class);
+            startActivity(intent);
+            finish();
+            return true;
+        }
+        if(id==R.id.nav_mess)
+        {
+            Intent intent=new Intent(this, Delivery_Done.class);
+            startActivity(intent);
+            finish();
+            return true;
+        }
+        if(id==R.id.nav_deli)
+        {
+            Intent intent=new Intent(this, Delivery_Details.class);
+            startActivity(intent);
+            finish();
+            return true;
+        }
+        if(id==R.id.nav_log)
+        {
+            FirebaseAuth.getInstance().signOut();
+            startActivity(new Intent(getApplicationContext(), Login.class));
+            finish();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }
 

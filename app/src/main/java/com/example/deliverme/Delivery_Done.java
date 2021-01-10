@@ -10,7 +10,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -27,7 +26,7 @@ import java.util.Hashtable;
 
 import static android.widget.Toast.LENGTH_SHORT;
 
-public class Messages extends AppCompatActivity {
+public class Delivery_Done extends AppCompatActivity {
     ListView listview;
     String selected = "";
     String pack;
@@ -129,15 +128,15 @@ public class Messages extends AppCompatActivity {
                 view.setSelected(true);
                 if((selected=="" || selected==" " || selected.length()<2 || selected==null)|| (!selected.contains("ממתין לאישור") && !selected.contains("בדרך")))
                 {
-                    Toast.makeText(Messages.this,"עליך לבחור חבילה אשר ממתינה לאישור!", LENGTH_SHORT).show();
+                    Toast.makeText(Delivery_Done.this,"עליך לבחור חבילה אשר ממתינה לאישור!", LENGTH_SHORT).show();
                 }
                 else if (selected.contains("בדרך"))
                 {
-                    Toast.makeText(Messages.this,"חבילה שבדרך נבחרה!", LENGTH_SHORT).show();
+                    Toast.makeText(Delivery_Done.this,"חבילה שבדרך נבחרה!", LENGTH_SHORT).show();
 //                    choose_package2_rate();
                 }
                 else{
-                    Toast.makeText(Messages.this,"חבילה נבחרה!", LENGTH_SHORT).show();
+                    Toast.makeText(Delivery_Done.this,"חבילה נבחרה!", LENGTH_SHORT).show();
 //                    choose_package();
                 }
             }
@@ -193,7 +192,7 @@ public class Messages extends AppCompatActivity {
         }
         if(id==R.id.nav_mess)
         {
-            Intent intent=new Intent(this, Messages.class);
+            Intent intent=new Intent(this, Delivery_Done.class);
             startActivity(intent);
             finish();
             return true;

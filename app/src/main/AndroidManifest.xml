@@ -11,7 +11,7 @@
         android:theme="@style/Theme.DeliverMe">
         <activity android:name=".Admin"></activity>
         <activity android:name=".Prof"></activity>
-        <activity android:name=".Messages"></activity>
+        <activity android:name=".Delivery_Done"></activity>
         <activity android:name=".Delivery_Details"></activity>
         <activity android:name=".Storage"></activity>
         <activity android:name=".Delivery_Person" />

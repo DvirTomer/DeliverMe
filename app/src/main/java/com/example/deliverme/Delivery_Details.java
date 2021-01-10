@@ -199,7 +199,7 @@ public class Delivery_Details extends AppCompatActivity {
         }
         if(id==R.id.nav_mess)
         {
-            Intent intent=new Intent(this, Messages.class);
+            Intent intent=new Intent(this, Delivery_Done.class);
             startActivity(intent);
             finish();
             return true;
